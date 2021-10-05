@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput;
     [SerializeField]
     private float speed = 10;
+    [SerializeField]
+    private GameObject projectilePrefab;
     private float xRange = 10;
     
     // Start is called before the first frame update
@@ -22,8 +24,13 @@ public class PlayerController : MonoBehaviour
         //Allows the player to move left and right using their keys
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * Time.deltaTime * horizontalInput * speed);
-        
         //Checks to see if the player is within the game boundaries and repositions them
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -xRange, xRange), transform.position.y, transform.position.z);
+        
+        //Allow player to shoot projectile when pressing spacebar
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+        }
     }
 }
