@@ -7,10 +7,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float horizontalInput;
     [SerializeField]
-    private float speed = 10;
+    private float speed = 20;
     [SerializeField]
     private GameObject projectilePrefab;
-    private float xRange = 10;
+    private float xRange = 20;
     
     // Start is called before the first frame update
     void Start()
