@@ -482,6 +482,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 677173497, guid: 0703a1849c2c89b4db4568688faf0c5f, type: 3}
+      propertyPath: jumpForce
+      value: 550
+      objectReference: {fileID: 0}
+    - target: {fileID: 677173497, guid: 0703a1849c2c89b4db4568688faf0c5f, type: 3}
+      propertyPath: gravityModifier
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 677173499, guid: 0703a1849c2c89b4db4568688faf0c5f, type: 3}
+      propertyPath: m_Mass
+      value: 60
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0703a1849c2c89b4db4568688faf0c5f, type: 3}
 --- !u!1 &1182873911
@@ -640,7 +652,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6931237704088737898, guid: c18352986fca736488fe94d4f1c0fa11, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.6
+      value: 26.3
       objectReference: {fileID: 0}
     - target: {fileID: 6931237704088737898, guid: c18352986fca736488fe94d4f1c0fa11, type: 3}
       propertyPath: m_LocalPosition.y
