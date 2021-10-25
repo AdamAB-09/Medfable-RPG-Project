@@ -23,6 +23,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         powerupIndicator.transform.position = transform.position;
+
+        if (transform.position.y < -10)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void FixedUpdate()

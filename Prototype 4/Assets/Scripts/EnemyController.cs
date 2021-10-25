@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
     private float speed;
     private GameObject player;
     private Rigidbody enemyBody;
+    private int playerCount;
 
     // Start is called before the first frame update
     void Start()
@@ -19,13 +20,20 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (transform.position.y < -15)
+        {
+            Destroy(gameObject);
+        }
         
     }
 
     private void FixedUpdate()
     {
-        Vector3 aiDirection = (player.transform.position - transform.position).normalized;
-        enemyBody.AddForce(aiDirection * speed);
+        playerCount = FindObjectsOfType<PlayerController>().Length;
+        if (playerCount != 0)
+        {
+            Vector3 aiDirection = (player.transform.position - transform.position).normalized;
+            enemyBody.AddForce(aiDirection * speed);
+        }
     }
 }
