@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
         RaycastHit hitInfo;
         bool hasHit = Physics.Raycast(cameraRay, out hitInfo);
 
+        //Moves the player to where the raycast has collided
         if (hasHit)
         {
             GetComponent<NavMeshAgent>().destination = hitInfo.point;
