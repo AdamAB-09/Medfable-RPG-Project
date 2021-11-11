@@ -2785,6 +2785,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7415182190947962904, guid: 3e1339e0c0b1f4c41b821994f57786aa, type: 3}
+      propertyPath: m_CameraDistance
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 7415182191383126186, guid: 3e1339e0c0b1f4c41b821994f57786aa, type: 3}
       propertyPath: m_Name
       value: Follow Player Camera
@@ -2799,11 +2803,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7415182191383126188, guid: 3e1339e0c0b1f4c41b821994f57786aa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.329998
+      value: 9.634539
       objectReference: {fileID: 0}
     - target: {fileID: 7415182191383126188, guid: 3e1339e0c0b1f4c41b821994f57786aa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 15.32089
+      value: 9.725059
       objectReference: {fileID: 0}
     - target: {fileID: 7415182191383126188, guid: 3e1339e0c0b1f4c41b821994f57786aa, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2846,6 +2850,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7575633298754359040, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
+      propertyPath: m_Acceleration
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8711260815396773641, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2901,25 +2909,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8711260815396773641, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
   m_PrefabInstance: {fileID: 7575633298754359037}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &7575633298754359039
-Animator:
-  serializedVersion: 3
+--- !u!114 &7575633298754359039
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7575633298754359038}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
-  m_Controller: {fileID: 9100000, guid: 06c6689a044664f4c8f8c073b45b9bce, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e02eaf999858a4b4884d72cbcc1ac3a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freeLookCamera: {fileID: 0}
+  freeLookComponent: {fileID: 0}
+  playerControllerScript: {fileID: 0}
 --- !u!4 &7575633298754359044 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9216131237162722673, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,12 +16,22 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        PlayerAnimation();
+
         //Checks whether the left button which initaties player movement
         if (Input.GetMouseButtonDown(0))
         {
             PlayerMovement();
         }
+    }
 
+    // Changes the player animation relative to the velocity the player moves at
+    private void PlayerAnimation()
+    {
+        // Changing global velocity to local for the animator to recongnise 
+        Vector3 relativeVelocity = transform.InverseTransformDirection(GetComponent<NavMeshAgent>().velocity);
+        float forwardSpeed = Mathf.Abs(relativeVelocity.z);
+        GetComponent<Animator>().SetFloat("forwardSpeed", forwardSpeed);
     }
 
     private void PlayerMovement()
