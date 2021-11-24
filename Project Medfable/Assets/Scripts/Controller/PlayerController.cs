@@ -12,12 +12,12 @@ namespace Medfable.Controller
         void Update()
         {
             PlayerAnimation();
-            PlayerCombat();
+            if (PlayerCombat()) return;
             PlayerMovement();
         }
 
         // Allows the player to engage in combat with targets in the environment 
-        private void PlayerCombat()
+        private bool PlayerCombat()
         {
             //Checks whether left mouse button is pressed and gets all the raycast hits
             if (Input.GetMouseButtonDown(0))
@@ -34,10 +34,11 @@ namespace Medfable.Controller
                     if (target != null)
                     {
                         GetComponent<EntityCombat>().Attack(target);
-                        break;
+                        return true;
                     }
                 }
             }
+            return false;
         }
 
         // Uses raycasting to move the player where the user clicks on the environment 
