@@ -1,4 +1,5 @@
 using Medfable.Combat;
+using Medfable.Core;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -32,6 +33,7 @@ namespace Medfable.Movement
         // Allows the entity to move towards a target destination
         public void MoveTowards(Vector3 targetDest)
         {
+            GetComponent<InteractionScheduler>().StartAction(this);
             navMeshAgent.stoppingDistance = 0;
             GetComponent<EntityCombat>().CancelAttack();
             navMeshAgent.destination = targetDest;

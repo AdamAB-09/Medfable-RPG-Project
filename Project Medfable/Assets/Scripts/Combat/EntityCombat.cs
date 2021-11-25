@@ -1,3 +1,4 @@
+using Medfable.Core;
 using Medfable.Movement;
 using UnityEngine;
 
@@ -5,9 +6,9 @@ namespace Medfable.Combat
 {
     public class EntityCombat : MonoBehaviour
     {
-        Transform target;
+        private Transform target;
         [SerializeField]
-        float weaponRange = 2.5f;
+        private float weaponRange = 2.5f;
 
         // Update is called once per frame
         private void Update()
@@ -21,6 +22,7 @@ namespace Medfable.Combat
         // User will start attacking the target
         public void Attack(CombatTarget combatTarget)
         {
+            GetComponent<InteractionScheduler>().StartAction(this);
             target = combatTarget.transform;
         }
 
