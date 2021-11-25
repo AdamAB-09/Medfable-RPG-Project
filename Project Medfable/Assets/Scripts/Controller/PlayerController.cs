@@ -11,7 +11,6 @@ namespace Medfable.Controller
         // Update is called once per frame
         void Update()
         {
-            PlayerAnimation();
             if (PlayerCombat()) return;
             PlayerMovement();
         }
@@ -57,15 +56,6 @@ namespace Medfable.Controller
                     GetComponent<EntityMovement>().MoveTowards(target.point);
                 }
             }
-        }
-
-        // Changes the player animation relative to the velocity the player moves at
-        private void PlayerAnimation()
-        {
-            // Changing global velocity to local for the animator to recongnise 
-            Vector3 relativeVelocity = transform.InverseTransformDirection(GetComponent<NavMeshAgent>().velocity);
-            float forwardSpeed = Mathf.Abs(relativeVelocity.z);
-            GetComponent<Animator>().SetFloat("forwardSpeed", forwardSpeed);
         }
 
         // Returns the point of the ray where the player clicks on the screen
