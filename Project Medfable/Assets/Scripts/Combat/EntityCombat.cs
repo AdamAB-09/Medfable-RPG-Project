@@ -8,14 +8,24 @@ namespace Medfable.Combat
     {
         private Transform target;
         [SerializeField]
-        private float weaponRange = 2.5f;
+        private float attackRange = 2.7f;
 
         // Update is called once per frame
         private void Update()
         {
             if (target != null)
             {
-                GetComponent<EntityMovement>().MoveToEntity(target.position, weaponRange);
+                float distance = Vector3.Distance(transform.position, target.position);
+                GetComponent<EntityMovement>().MoveToEntity(target.position, attackRange);
+                AttackAnimation(distance);
+            }
+        }
+
+        private void AttackAnimation(float distance)
+        {
+            if (distance < attackRange)
+            {
+                GetComponent<Animator>().SetTrigger("attack");
             }
         }
 
@@ -31,5 +41,9 @@ namespace Medfable.Combat
         {
             target = null;
         }
+
+        // Event for the animator to use
+        public void Hit()
+        { }
     }
 }
