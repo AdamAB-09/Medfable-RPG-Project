@@ -4,17 +4,18 @@ namespace Medfable.Core
 {
     public class InteractionScheduler : MonoBehaviour
     {
-        private MonoBehaviour currentAction;
+        private IInteraction currentAction;
 
-        public void StartAction(MonoBehaviour action)
+        // Schedule a new action and cancel the previous action
+        public void StartNewAction(IInteraction action)
         {
             if (currentAction == action) 
             { 
                 return; 
             }
-            if (currentAction != null)
+            else if (currentAction != null)
             {
-                print(action);
+                currentAction.CancelAction();
             }
             currentAction = action;
         }

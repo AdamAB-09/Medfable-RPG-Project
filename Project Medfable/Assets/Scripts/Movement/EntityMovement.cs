@@ -1,13 +1,12 @@
-using Medfable.Combat;
 using Medfable.Core;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace Medfable.Movement
 {
-    public class EntityMovement : MonoBehaviour
+    public class EntityMovement : MonoBehaviour, IInteraction
     {
-        NavMeshAgent navMeshAgent;
+        private NavMeshAgent navMeshAgent;
 
         // Awake is called when script instances are being loaded 
         private void Awake()
@@ -33,9 +32,8 @@ namespace Medfable.Movement
         // Allows the entity to move towards a target destination
         public void MoveTowards(Vector3 targetDest)
         {
-            GetComponent<InteractionScheduler>().StartAction(this);
+            GetComponent<InteractionScheduler>().StartNewAction(this);
             navMeshAgent.stoppingDistance = 0;
-            GetComponent<EntityCombat>().CancelAttack();
             navMeshAgent.destination = targetDest;
         }
 
@@ -47,6 +45,9 @@ namespace Medfable.Movement
             float forwardSpeed = Mathf.Abs(relativeVelocity.z);
             GetComponent<Animator>().SetFloat("forwardSpeed", forwardSpeed);
         }
+
+        public void CancelAction()
+        { }
     }
 }
 

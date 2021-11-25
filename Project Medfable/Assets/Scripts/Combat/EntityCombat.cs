@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Medfable.Combat
 {
-    public class EntityCombat : MonoBehaviour
+    public class EntityCombat : MonoBehaviour, IInteraction
     {
         private Transform target;
         [SerializeField]
@@ -22,12 +22,12 @@ namespace Medfable.Combat
         // User will start attacking the target
         public void Attack(CombatTarget combatTarget)
         {
-            GetComponent<InteractionScheduler>().StartAction(this);
+            GetComponent<InteractionScheduler>().StartNewAction(this);
             target = combatTarget.transform;
         }
 
         // Player will stop locking onto enemy and stop attacking
-        public void CancelAttack()
+        public void CancelAction()
         {
             target = null;
         }
