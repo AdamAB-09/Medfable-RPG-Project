@@ -1,5 +1,6 @@
 using Medfable.Core;
 using Medfable.Movement;
+using System.Collections;
 using UnityEngine;
 
 namespace Medfable.Combat
@@ -9,6 +10,9 @@ namespace Medfable.Combat
         private Transform target;
         [SerializeField]
         private float attackRange = 2.7f;
+        [SerializeField]
+        private float attackCooldown = 2f;
+        private bool isCooldown = false;
 
         // Update is called once per frame
         private void Update()
@@ -17,15 +21,18 @@ namespace Medfable.Combat
             {
                 float distance = Vector3.Distance(transform.position, target.position);
                 GetComponent<EntityMovement>().MoveToEntity(target.position, attackRange);
-                AttackAnimation(distance);
+                AttackHandler(distance);
             }
         }
 
-        private void AttackAnimation(float distance)
+        // Controls the attack behaviour of an entity
+        private void AttackHandler(float distance)
         {
-            if (distance < attackRange)
+            if (distance < attackRange && !isCooldown)
             {
+                transform.LookAt(target);
                 GetComponent<Animator>().SetTrigger("attack");
+                StartCoroutine(Cooldown());
             }
         }
 
@@ -45,5 +52,13 @@ namespace Medfable.Combat
         // Event for the animator to use
         public void Hit()
         { }
+
+        // Generates an attack cooldown after the entity performs the combat animation
+        private IEnumerator Cooldown()
+        {
+            isCooldown = true;
+            yield return new WaitForSeconds(attackCooldown);
+            isCooldown = false;
+        }
     }
 }
