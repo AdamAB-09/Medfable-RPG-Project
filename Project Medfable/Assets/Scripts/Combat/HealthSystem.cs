@@ -10,7 +10,6 @@ namespace Medfable.Combat
         public void TakeDamage(float damage)
         {
             health -= damage;
-            print(health);
 
             if (health <= 0)
             {
