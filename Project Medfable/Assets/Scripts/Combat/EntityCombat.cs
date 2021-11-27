@@ -13,6 +13,7 @@ namespace Medfable.Combat
         [SerializeField]
         private float attackCooldown = 2f;
         private bool isCooldown = false;
+        private float weaponDamage = 20f;
 
         // Update is called once per frame
         private void Update()
@@ -36,6 +37,12 @@ namespace Medfable.Combat
             }
         }
 
+        // Event for the animator to use
+        public void Hit()
+        {
+            target.GetComponent<HealthSystem>().TakeDamage(weaponDamage);
+        }
+
         // User will start attacking the target
         public void Attack(CombatTarget combatTarget)
         {
@@ -48,10 +55,6 @@ namespace Medfable.Combat
         {
             target = null;
         }
-
-        // Event for the animator to use
-        public void Hit()
-        { }
 
         // Generates an attack cooldown after the entity performs the combat animation
         private IEnumerator Cooldown()

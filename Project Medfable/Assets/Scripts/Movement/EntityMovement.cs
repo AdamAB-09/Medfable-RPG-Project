@@ -21,12 +21,12 @@ namespace Medfable.Movement
         }
 
         /* Allows the entity to move and stop within its weapon range towards another
-           entity's destination
+           entity's position
         */
-        public void MoveToEntity(Vector3 entityDest, float weaponRange)
+        public void MoveToEntity(Vector3 entityPosition, float weaponRange)
         {
-            navMeshAgent.destination = entityDest;
             navMeshAgent.stoppingDistance = weaponRange;
+            navMeshAgent.destination = entityPosition;
         }
 
         // Allows the entity to move towards a target destination
