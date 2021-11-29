@@ -9,8 +9,7 @@ namespace Medfable.Core
         // Schedule a new action and cancel the previous action
         public void StartNewAction(IInteraction action)
         {
-            if (currentAction == action) 
-            { 
+            if (currentAction == action) { 
                 return; 
             }
             else if (currentAction != null)
