@@ -17,7 +17,20 @@ Prototype 4
 ---------
 
 This is the Unit 4 guided tutorial provided by Unity: https://learn.unity.com/pathway/junior-programmer
-* The demo contains a sphere that is movable using WASD and is dependent on the camera angle which can be adjusted with the arrow keys
+* The demo contains a sphere that is movable using WS and is dependent on the camera angle which can be adjusted with the left/right arrow keys or A/D
 * Within this demo you are meant to push off the other spheres until you lose (fall off the platform)
-* This demo demonstrates simple gameplay mechanics such as powerups, cooldowns and increased difficulty with multiple waves
+* This demo demonstrates simple gameplay mechanics such as powerups, countdowns, enemy AI tracking and increased difficulty with multiple waves
 
+UI Demo
+---------
+
+* A simple main menu UI that contains a start, options and quit button that are all functionable
+* Start takes user to a different Scene, Options takes user to an Options Menu with a single option to toogle fullscreen and Quit closes application
+
+Projecct Medfable
+---------
+
+This is the sandbox for the RPG that's in building process
+
+* Designed a small playable space to test out the different functionalities
+* Currently there is movement and some elements of combat added to this sandbox along with other core features 
