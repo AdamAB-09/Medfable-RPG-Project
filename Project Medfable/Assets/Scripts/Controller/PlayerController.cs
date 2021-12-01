@@ -10,7 +10,7 @@ namespace Medfable.Controller
         // Update is called once per frame
         void Update()
         {
-            if (PlayerCombat()) return;
+            if (PlayerCombat()) { return; }
             PlayerMovement();
         }
 
