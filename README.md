@@ -27,7 +27,7 @@ UI Demo
 * A simple main menu UI that contains a start, options and quit button that are all functionable
 * Start takes user to a different Scene, Options takes user to an Options Menu with a single option to toogle fullscreen and Quit closes application
 
-Projecct Medfable
+Project Medfable
 ---------
 
 This is the sandbox for the RPG that's in building process
