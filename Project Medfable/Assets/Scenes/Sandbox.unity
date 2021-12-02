@@ -2927,11 +2927,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7575633298754359040, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
       propertyPath: m_Acceleration
-      value: 15
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7882320030434224866, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
       propertyPath: attackRange
-      value: 2.4
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 7882320030434224866, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
       propertyPath: attackCooldown
