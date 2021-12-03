@@ -7,16 +7,10 @@ public class MoveForward : MonoBehaviour
     [SerializeField]
     private float speed = 40;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
+        // Moves the animals and projectile in the scene forward
         transform.Translate(Vector3.forward * Time.deltaTime * speed);
-        
     }
 }
