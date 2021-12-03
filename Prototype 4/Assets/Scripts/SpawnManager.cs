@@ -16,10 +16,12 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // At the start of the game it will create wave 1 and create a random spawn for the enemies and powerup
         SpawnEnemy(waveCount);
         Instantiate(powerupPrefab, GenerateSpawnPos(), powerupPrefab.transform.rotation);
     }
 
+    // This method is used to create a random spawn position on the platform for enemies and powerup
     private Vector3 GenerateSpawnPos()
     {
         float spawnPosX = Random.Range(-spawnRange, spawnRange);
@@ -28,6 +30,7 @@ public class SpawnManager : MonoBehaviour
         return randomPos;
     }
 
+    // Spawn the corresponding amount of enemies to the wave number
     void SpawnEnemy(int numberOfEnemies)
     {
         for (int i = 0; i < numberOfEnemies; i++)
@@ -35,7 +38,8 @@ public class SpawnManager : MonoBehaviour
             Instantiate(enemyPrefab, GenerateSpawnPos(), enemyPrefab.transform.rotation);
         }
     }
-
+    
+    // Gives a slight chance of spawning a powerup for the player
     void SpawnPowerup()
     {
         int powerupChance = 1;
@@ -57,12 +61,14 @@ public class SpawnManager : MonoBehaviour
         enemyCount = FindObjectsOfType<EnemyController>().Length;
         playerCount = FindObjectsOfType<PlayerController>().Length;
 
+        // Whenever the player pushes all the enemies and remains on the platform, start the next wave of enemies
         if (enemyCount == 0 && playerCount != 0)
         {
             waveCount++;
             SpawnEnemy(waveCount);
             SpawnPowerup();
         }
+        // If the player falls of however, it will trigger game over
         else if (playerCount == 0)
         {
             Debug.Log("Game over");
