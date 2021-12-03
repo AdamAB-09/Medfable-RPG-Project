@@ -37,7 +37,7 @@ namespace Medfable.Combat
             }
         }
 
-        // Event for the animator to use
+        // Event for the animator to use - this is called when the entity's animation shows a complete hit
         public void Hit()
         {
             target.GetComponent<HealthSystem>().TakeDamage(weaponDamage);
