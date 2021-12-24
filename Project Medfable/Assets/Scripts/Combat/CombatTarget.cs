@@ -2,7 +2,10 @@ using UnityEngine;
 
 namespace Medfable.Combat
 {
-    // Temporary script to attach to enemy targets for the player to respond to
+    /*This empty script is used to attach to an enemy target for the PlayerController and
+      EntityCombat classes to reference.
+      This idea is inspired by https://chandler-lane.medium.com/setting-up-combat-architecture-in-unity-996096620ef6
+    */
     public class CombatTarget : MonoBehaviour
     {
  

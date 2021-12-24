@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Whenever space is pressed and they're currently on the ground alive then trigger jump
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !gameOver)
         {
             playerBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -55,11 +56,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        // Whenever the player interacts with the ground have a dirt particle animation playing
         if (collision.gameObject.CompareTag("Ground") && !gameOver)
         {
             isOnGround = true;
             dirtParticle.Play();
         }
+        // If the player crashes into the obstacle it will trigger game over and the death animation
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
             Debug.Log("Game over!");
