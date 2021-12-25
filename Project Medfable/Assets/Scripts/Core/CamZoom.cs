@@ -29,7 +29,6 @@ namespace Medfable.Core
             if (Input.GetAxis("Mouse ScrollWheel") > 0 && camDistance < maxZoom)
             {
                 (componentBase as CinemachineFramingTransposer).m_CameraDistance += zoomValue;
-
             }
             //If the player scrolls up they zoom in until minZoom value
             else if (Input.GetAxis("Mouse ScrollWheel") < 0 && camDistance > minZoom)

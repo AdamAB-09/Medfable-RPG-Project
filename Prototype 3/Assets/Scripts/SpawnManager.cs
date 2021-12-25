@@ -7,23 +7,24 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject obstaclePrefab;
     private Vector3 spawnPos = new Vector3(27, 0, 0);
-    private float startDelay = 2;
-    private float repeatRate = 1.8f;
+    private float startDelay = 3;
+    private float repeatRate = 2;
     private PlayerController playerControllerScript;
+
+    private void Awake()
+    {
+        // Initialise the Player Controller by locating the player in the scene
+        playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+        // The obstacles are spawned in every 1.8 seconds and for the first call it will be 2 seconds
         InvokeRepeating("SpawnObstacle", startDelay, repeatRate);
-        playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
+    // Obstacles are spawned in as long as the player hasn't lost the game    
     private void SpawnObstacle()
     {
         if (!playerControllerScript.gameOver)

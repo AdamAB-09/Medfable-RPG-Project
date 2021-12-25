@@ -29,7 +29,7 @@ namespace Medfable.Combat
         // Controls the attack behaviour of an entity
         private void AttackHandler(float distance)
         {
-            if (distance < attackRange && !isCooldown)
+            if (distance <= attackRange && !isCooldown)
             {
                 transform.LookAt(target);
                 GetComponent<Animator>().SetTrigger("attack");
@@ -37,7 +37,7 @@ namespace Medfable.Combat
             }
         }
 
-        // Event for the animator to use
+        // Event for the animator to use - this is called when the entity's animation shows a complete hit
         public void Hit()
         {
             target.GetComponent<HealthSystem>().TakeDamage(weaponDamage);

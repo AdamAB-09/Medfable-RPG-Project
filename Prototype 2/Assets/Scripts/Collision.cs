@@ -4,18 +4,7 @@ using UnityEngine;
 
 public class Collision : MonoBehaviour
 {
-	// Start is called before the first frame update
-	void Start()
-	{
-		
-	}
-
-	// Update is called once per frame
-	void Update()
-	{			
-		
-	}
-
+	// Whenver there is a collision, both objects that collided are deleted from scene
 	private void OnTriggerEnter(Collider other)
 	{
 		Destroy(gameObject);
