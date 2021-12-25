@@ -9,7 +9,7 @@ namespace Medfable.Combat
     {
         private Transform target;
         [SerializeField]
-        private float attackRange = 2.4f;
+        private float attackRange = 1.9f;
         [SerializeField]
         private float attackCooldown = 2f;
         private bool isCooldown = false;
