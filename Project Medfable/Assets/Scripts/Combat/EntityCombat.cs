@@ -7,7 +7,7 @@ namespace Medfable.Combat
 {
     public class EntityCombat : MonoBehaviour, IInteraction
     {
-        private Transform target;
+        private HealthSystem target;
         [SerializeField]
         private float attackRange = 1.9f;
         [SerializeField]
@@ -18,10 +18,10 @@ namespace Medfable.Combat
         // Update is called once per frame
         private void Update()
         {
-            if (target != null)
+            if (target != null && target.IsAlive)
             {
-                float distance = Vector3.Distance(transform.position, target.position);
-                GetComponent<EntityMovement>().MoveToEntity(target.position, attackRange);
+                float distance = Vector3.Distance(transform.position, target.transform.position);
+                GetComponent<EntityMovement>().MoveToEntity(target.transform.position, attackRange);
                 AttackHandler(distance);
             }
         }
@@ -31,7 +31,7 @@ namespace Medfable.Combat
         {
             if (distance <= attackRange && !isCooldown)
             {
-                transform.LookAt(target);
+                transform.LookAt(target.transform);
                 GetComponent<Animator>().SetTrigger("attack");
                 StartCoroutine(Cooldown());
             }
@@ -47,13 +47,14 @@ namespace Medfable.Combat
         public void Attack(CombatTarget combatTarget)
         {
             GetComponent<InteractionScheduler>().StartNewAction(this);
-            target = combatTarget.transform;
+            target = combatTarget.GetComponent<HealthSystem>();
         }
 
         // Player will stop locking onto enemy and stop attacking
         public void CancelAction()
         {
             target = null;
+            GetComponent<Animator>().SetTrigger("stopAttack");
         }
 
         // Generates an attack cooldown after the entity performs the combat animation
