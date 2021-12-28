@@ -23,13 +23,17 @@ PrefabInstance:
       propertyPath: health
       value: 140
       objectReference: {fileID: 0}
+    - target: {fileID: 5766443166899519508, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7575633298754359040, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
       propertyPath: m_Height
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7575633298754359040, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
       propertyPath: m_BaseOffset
-      value: 0
+      value: -0.05333336
       objectReference: {fileID: 0}
     - target: {fileID: 8711260815396773641, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
       propertyPath: m_Name
