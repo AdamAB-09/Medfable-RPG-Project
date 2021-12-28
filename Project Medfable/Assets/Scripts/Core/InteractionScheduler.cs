@@ -13,15 +13,18 @@ namespace Medfable.Core
         */
         public void StartNewAction(IInteraction action)
         {
-            if (currentAction == action) 
-            { 
-                return; 
-            }
+            if (currentAction == action) { return; }
             else if (currentAction != null)
             {
                 currentAction.CancelAction();
             }
             currentAction = action;
+        }
+
+        // Cancel the current action of an entity
+        public void CancelCurrentAction()
+        {
+            StartNewAction(null);
         }
     }
 }

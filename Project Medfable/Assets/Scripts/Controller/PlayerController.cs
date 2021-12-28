@@ -6,14 +6,19 @@ namespace Medfable.Controller
 {
     public class PlayerController : MonoBehaviour
     {
+        private HealthSystem health;
+
+        //Awake is called when script instances are being loaded
+        private void Awake()
+        {
+            health = GetComponent<HealthSystem>();
+        }
 
         // Update is called once per frame
         void Update()
         {
-            if (PlayerCombat()) 
-            { 
-                return; 
-            }
+            if (!health.IsAlive) { return; }
+            if (PlayerCombat()) { return; }
             PlayerMovement();
         }
 
@@ -34,7 +39,7 @@ namespace Medfable.Controller
                     CombatTarget target = hit.collider.GetComponent<CombatTarget>();
                     if (target != null)
                     {
-                        GetComponent<EntityCombat>().Attack(target);
+                        GetComponent<EntityCombat>().Attack(target.gameObject);
                         return true;
                     }
                 }

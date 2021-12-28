@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace Medfable.Core
 {
     public interface IInteraction

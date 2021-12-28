@@ -19,6 +19,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4479010620210539044, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
+      propertyPath: health
+      value: 140
+      objectReference: {fileID: 0}
     - target: {fileID: 7575633298754359040, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
       propertyPath: m_Height
       value: 2
@@ -29,6 +33,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8711260815396773641, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8711260815396773641, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 9216131237162722673, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
