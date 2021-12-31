@@ -7,12 +7,19 @@ namespace Medfable.Controller
 {
     public class EnemyController : MonoBehaviour
     {
-        [Header("AI mechanisms")]
+        [Header("Chase player mechanism")]
         [SerializeField]
         private float chaseRadius = 5f;
         [SerializeField]
         private float searchTime = 5f;
         private float playerLastSpotted = Mathf.Infinity;
+
+        [Header("Patrolling mechanism")]
+        [SerializeField]
+        private PatrolController patrolRoute;
+        [SerializeField]
+        private float checkpointRadius = 1f;
+        private int currentCheckpointIndex = 0;
 
         [Header("Variables for intalising")]
         private EntityCombat enemy;
@@ -51,16 +58,37 @@ namespace Medfable.Controller
             }
             else
             {
-                GuardingPosition();
+                GuardingBehaviour();
             }
             playerLastSpotted += Time.deltaTime;
         }
 
-        // Enemy returns to their original position where they were guarding
-        private void GuardingPosition()
+        /* Enemy will perform guarding action in which they will either patrol or return to
+        *  their original position if they have no route
+        */
+        private void GuardingBehaviour()
         {
-            if (transform.position == startingLocation) { return; }
-            movement.MoveTowards(startingLocation);
+            Vector3 nextPosition = startingLocation;
+
+            /* When there's a patrolling route the enemy will cycle through all the checkpoints
+            *  via their positions in the scene
+            */
+            if (patrolRoute != null)
+            {
+                if (AtCheckpoint())
+                {
+                    currentCheckpointIndex = patrolRoute.GetNextCPIndex(currentCheckpointIndex);
+                }
+                nextPosition = patrolRoute.GetCheckpoint(currentCheckpointIndex);
+            }
+            movement.MoveTowards(nextPosition);
+        }
+
+        // Checks whether the enemy is near any patrolling checkpoints
+        private bool AtCheckpoint()
+        {
+            float distanceToCheckpoint = Vector3.Distance(transform.position, patrolRoute.GetCheckpoint(currentCheckpointIndex));
+            return distanceToCheckpoint <= checkpointRadius;
         }
 
         // When enemy loses track of the player they will halt and search
@@ -76,7 +104,7 @@ namespace Medfable.Controller
             playerLastSpotted = 0f;
         }
 
-        // Unity calls this method to draw on screen any gizmos
+        // Draw on screen the patrol radius around the enemy
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.cyan;
