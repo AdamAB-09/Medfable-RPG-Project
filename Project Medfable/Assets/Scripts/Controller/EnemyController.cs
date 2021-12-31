@@ -1,6 +1,7 @@
 using Medfable.Combat;
 using Medfable.Core;
 using Medfable.Movement;
+using System.Collections;
 using UnityEngine;
 
 namespace Medfable.Controller
@@ -19,7 +20,10 @@ namespace Medfable.Controller
         private PatrolController patrolRoute;
         [SerializeField]
         private float checkpointRadius = 1f;
+        [SerializeField]
+        private float dwellTime = 5f;
         private int currentCheckpointIndex = 0;
+        private bool isWaitingAtCP = false;
 
         [Header("Variables for intalising")]
         private EntityCombat enemy;
@@ -78,10 +82,15 @@ namespace Medfable.Controller
                 if (AtCheckpoint())
                 {
                     currentCheckpointIndex = patrolRoute.GetNextCPIndex(currentCheckpointIndex);
+                    StartCoroutine(StartDwellTime());
                 }
                 nextPosition = patrolRoute.GetCheckpoint(currentCheckpointIndex);
             }
-            movement.MoveTowards(nextPosition);
+            
+            if (!isWaitingAtCP)
+            {
+                movement.MoveTowards(nextPosition);
+            }
         }
 
         // Checks whether the enemy is near any patrolling checkpoints
@@ -109,6 +118,14 @@ namespace Medfable.Controller
         {
             Gizmos.color = Color.cyan;
             Gizmos.DrawWireSphere(transform.position, chaseRadius);
+        }
+
+        // When enemy arrives at checkpoint they will have a waiting time
+        private IEnumerator StartDwellTime()
+        {
+            isWaitingAtCP = true;
+            yield return new WaitForSeconds(dwellTime);
+            isWaitingAtCP = false;
         }
     }
 }
