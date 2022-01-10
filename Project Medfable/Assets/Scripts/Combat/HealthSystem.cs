@@ -1,4 +1,4 @@
-using System;
+using Medfable.Core;
 using System.Collections;
 using UnityEngine;
 
@@ -11,6 +11,13 @@ namespace Medfable.Combat
         float health = 100f;
         [SerializeField]
         float deathCooldown = 3f;
+        private GameObject player;
+
+        // Start is called before the first frame update
+        private void Start()
+        {
+            player = GameObject.FindWithTag("Player");
+        }
 
         // Getter to check whether an entity is alive from another class
         public bool IsAlive
@@ -34,13 +41,16 @@ namespace Medfable.Combat
         // Uses the death animation whenever an entity loses all their health
         private void Die()
         {
-            if (!isAlive)
-            {
-                return;
-            }
+            if (!isAlive) { return; }
             isAlive = false;
             GetComponent<Animator>().SetTrigger("die");
-            StartCoroutine(RemoveDeadBody());
+            GetComponent<InteractionScheduler>().CancelCurrentAction();
+            
+            // Remove dead body from scene only if it's an enemy
+            if (gameObject != player)
+            {
+                StartCoroutine(RemoveDeadBody());
+            }
         }
 
         // Cooldown in which the dead body after they perform the death animation is removed from the game
