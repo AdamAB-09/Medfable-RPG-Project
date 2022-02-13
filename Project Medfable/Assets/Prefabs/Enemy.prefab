@@ -39,6 +39,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseRadius: 5
+  searchTime: 5
+  chaseSpeed: 4.8
+  patrolRoute: {fileID: 0}
+  checkpointRadius: 1
+  dwellTime: 5
+  patrolSpeed: 3.8
 --- !u!1001 &500288244015938336
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -133,7 +139,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8711260815396773641, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
       propertyPath: m_Name
-      value: Enemy
+      value: Enemy 2
       objectReference: {fileID: 0}
     - target: {fileID: 9216131237162722673, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
       propertyPath: m_RootOrder
@@ -141,15 +147,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9216131237162722673, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.7445781
+      value: 23.542345
       objectReference: {fileID: 0}
     - target: {fileID: 9216131237162722673, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0000026226044
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9216131237162722673, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.4364843
+      value: -7.828516
       objectReference: {fileID: 0}
     - target: {fileID: 9216131237162722673, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
       propertyPath: m_LocalRotation.w
