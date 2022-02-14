@@ -55,6 +55,7 @@ namespace Medfable.Combat
         public void CancelAction()
         {
             target = null;
+            GetComponent<EntityMovement>().CancelAction();
             GetComponent<Animator>().SetTrigger("stopAttack");
         }
 
