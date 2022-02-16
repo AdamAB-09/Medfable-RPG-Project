@@ -3,7 +3,7 @@ using UnityEngine;
 using Medfable.Core;
 using Medfable.Controller;
 
-namespace Medfable.Cutscenes
+namespace Medfable.SceneManagement
 {
     public class CutsceneManager : MonoBehaviour
     {
