@@ -30,6 +30,7 @@ namespace Medfable.SceneManagement
             }
         }
 
+        //Player loads into a new scene at the corresponding entry point that is connected to this
         private IEnumerator SwitchScene()
         {
             DontDestroyOnLoad(gameObject);
@@ -39,6 +40,7 @@ namespace Medfable.SceneManagement
             Destroy(gameObject);
         }
 
+        //The position and rotation of the player is adjusted to the spawn location of the entry point
         private void UpdatePlayer(EntryPoint entryDest)
         {
             if (entryDest != null)
@@ -51,13 +53,13 @@ namespace Medfable.SceneManagement
             }
         }
 
+        //Gets the corresponding entry point destination that is referenced from this entry point
         private EntryPoint GetOtherEntryPoint()
         {
             foreach (EntryPoint entryPoint in FindObjectsOfType<EntryPoint>())
             {
                 if (entryPoint.location == destination)
                 {
-                    print(entryPoint);
                     return entryPoint;
                 }
             }
