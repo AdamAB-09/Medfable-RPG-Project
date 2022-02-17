@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -8,7 +7,7 @@ namespace Medfable.SceneManagement
 {
     public class EntryPoint : MonoBehaviour
     {
-        [SerializeField]
+        [SerializeField, Range(0,1)]
         private int sceneReference = 1;
         [SerializeField]
         private EntryPointID location;
@@ -33,10 +32,16 @@ namespace Medfable.SceneManagement
         //Player loads into a new scene at the corresponding entry point that is connected to this
         private IEnumerator SwitchScene()
         {
+            //Fades out of the current scene before loading in the new scene
             DontDestroyOnLoad(gameObject);
+            FadeEffect fade = FindObjectOfType<FadeEffect>();
+            yield return fade.FadeOutScene();
             yield return SceneManager.LoadSceneAsync(sceneReference);
+            
+            //After new scene loads it will update the player and entry point then fade back into the scene
             EntryPoint entryDest = GetOtherEntryPoint();
             UpdatePlayer(entryDest);
+            yield return fade.FadeInScene();
             Destroy(gameObject);
         }
 

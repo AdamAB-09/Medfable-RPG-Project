@@ -1187,6 +1187,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 795718304}
+  - component: {fileID: 795718305}
   m_Layer: 0
   m_Name: Town
   m_TagString: Untagged
@@ -1235,6 +1236,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &795718305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 795718303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39158cb2004e4854c98bfc9ed94b6b47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  singletonPrefab: {fileID: 9094636730305953960, guid: 75065a95898133d438719ffa0da669ed, type: 3}
 --- !u!1 &871721493
 GameObject:
   m_ObjectHideFlags: 0
@@ -1342,15 +1356,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8510335617642872692, guid: bfc769c453462ed4faba1d1ba50093ea, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8510335617642872692, guid: bfc769c453462ed4faba1d1ba50093ea, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8510335617642872692, guid: bfc769c453462ed4faba1d1ba50093ea, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8510335617642872692, guid: bfc769c453462ed4faba1d1ba50093ea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2710,7 +2724,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1577779939}
-  m_LocalRotation: {x: 0.18218896, y: 0.3247023, z: -0.06389143, w: 0.9259015}
+  m_LocalRotation: {x: 0.18218897, y: 0.3247023, z: -0.06389145, w: 0.9259015}
   m_LocalPosition: {x: 11.46, y: 9.07, z: -19.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

@@ -1431,6 +1431,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1849602459}
+  - component: {fileID: 1849602460}
   m_Layer: 0
   m_Name: Crossroads Area
   m_TagString: Untagged
@@ -1466,6 +1467,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1849602460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849602458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39158cb2004e4854c98bfc9ed94b6b47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  singletonPrefab: {fileID: 9094636730305953960, guid: 75065a95898133d438719ffa0da669ed, type: 3}
 --- !u!1001 &1893782679
 PrefabInstance:
   m_ObjectHideFlags: 0
