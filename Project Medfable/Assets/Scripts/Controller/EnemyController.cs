@@ -3,6 +3,7 @@ using Medfable.Core;
 using Medfable.Movement;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Medfable.Controller
 {
@@ -13,6 +14,8 @@ namespace Medfable.Controller
         private float chaseRadius = 5f;
         [SerializeField]
         private float searchTime = 5f;
+        [SerializeField]
+        private float chaseSpeed = 4.8f;
         private float playerLastSpotted = Mathf.Infinity;
 
         [Header("Patrolling mechanism")]
@@ -22,6 +25,8 @@ namespace Medfable.Controller
         private float checkpointRadius = 1f;
         [SerializeField]
         private float dwellTime = 5f;
+        [SerializeField]
+        private float patrolSpeed = 3.8f;
         private int currentCheckpointIndex = 0;
         private bool isWaitingAtCP = false;
 
@@ -31,6 +36,7 @@ namespace Medfable.Controller
         private Vector3 startingLocation;
         private EntityMovement movement;
         private HealthSystem health;
+        private NavMeshAgent agent;
 
 
         // Initalise all the variables from the first frame
@@ -41,6 +47,7 @@ namespace Medfable.Controller
             enemy = GetComponent<EntityCombat>();
             player = GameObject.FindWithTag("Player");
             movement = GetComponent<EntityMovement>();
+            agent = GetComponent<NavMeshAgent>();
         }
 
         // Update is called once per frame
@@ -73,6 +80,7 @@ namespace Medfable.Controller
         private void GuardingBehaviour()
         {
             Vector3 nextPosition = startingLocation;
+            agent.speed = patrolSpeed;
 
             /* When there's a patrolling route the enemy will cycle through all the checkpoints
             *  via their positions in the scene
@@ -110,6 +118,7 @@ namespace Medfable.Controller
         private void AttackPlayer()
         {
             enemy.Attack(player);
+            agent.speed = chaseSpeed;
             playerLastSpotted = 0f;
         }
 
