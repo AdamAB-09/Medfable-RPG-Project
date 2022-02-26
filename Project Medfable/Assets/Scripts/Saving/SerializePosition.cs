@@ -7,6 +7,7 @@ namespace Medfable.Saving
     {
         public float[] position;
 
+        //Constructor in order to serialize a position of an object
         public SerializePosition(Vector3 nonSerializedPos)
         {
             position = new float[3];
@@ -15,6 +16,7 @@ namespace Medfable.Saving
             position[2] = nonSerializedPos.z;
         }
           
+        //Turns the serialized position back into an original Vector3 position
         public Vector3 GetVector3()
         {
             float x = position[0];

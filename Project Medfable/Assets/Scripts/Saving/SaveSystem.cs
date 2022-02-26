@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
@@ -16,8 +17,7 @@ namespace Medfable.Saving
             using (FileStream fileStream = File.Open(path, FileMode.Create))
             {
                 BinaryFormatter formatter = new BinaryFormatter();
-                GameObject player = GetPlayer();
-                formatter.Serialize(fileStream, new SerializePosition(player.transform.position));
+                formatter.Serialize(fileStream, CatchGameState());
             }
         }
 
@@ -29,15 +29,31 @@ namespace Medfable.Saving
             using (FileStream fileStream = File.Open(path, FileMode.Open))
             {
                 BinaryFormatter formatter = new BinaryFormatter();
-                GameObject player = GetPlayer();
-                SerializePosition serializedPos = (SerializePosition)formatter.Deserialize(fileStream);
-                player.transform.position = serializedPos.GetVector3();
+                GetGameState(formatter.Deserialize(fileStream));
             }
         }
 
-        private GameObject GetPlayer()
+        //Restores a prior game state by checking all the savable entities in a saved dictionary
+        private void GetGameState(object gameState)
         {
-            return GameObject.FindWithTag("Player");
+            Dictionary<string, object> dictState = (Dictionary<string, object>) gameState;
+            foreach (EntitySavable entity in FindObjectsOfType<EntitySavable>())
+            {
+                entity.RestoreGameObj(dictState[entity.GetGUID()]);
+            }
+        }
+
+        /*Capture the current game state by getting all the savable entites and adding it to
+        * a dictionary
+        */
+        private object CatchGameState()
+        {
+            Dictionary<string, object> dictState = new Dictionary<string, object>();
+            foreach (EntitySavable entity in FindObjectsOfType<EntitySavable>())
+            {
+                dictState[entity.GetGUID()] = entity.CatchObjState();
+            }
+            return dictState;
         }
     }
 }
