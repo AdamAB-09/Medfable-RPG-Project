@@ -4,7 +4,7 @@ namespace Medfable.Saving
 {
     public class SaveManager : MonoBehaviour
     {
-        private const string saveFile = "test-file";
+        private const string saveFile = "player-save.sav";
 
         //Checks whether the player is pressing the key to save or load a file
         private void Update()
