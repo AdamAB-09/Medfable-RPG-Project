@@ -1,4 +1,5 @@
 using System.IO;
+using System.Text;
 using UnityEngine;
 
 namespace Medfable.Saving
@@ -11,6 +12,10 @@ namespace Medfable.Saving
         {
             saveFile = Path.Combine(Application.persistentDataPath, saveFile);
             print("Currently saving to " + saveFile);
+            FileStream fileStream = File.Open(saveFile, FileMode.Create);
+            byte[] bytes = Encoding.UTF8.GetBytes("Writing to file!");
+            fileStream.Write(bytes, 0, bytes.Length);
+            fileStream.Close();
         }
 
         //Allows the player to load up their most current file
