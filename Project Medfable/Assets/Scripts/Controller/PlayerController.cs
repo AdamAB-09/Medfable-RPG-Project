@@ -1,6 +1,7 @@
 using Medfable.Combat;
 using Medfable.Movement;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Medfable.Controller
 {

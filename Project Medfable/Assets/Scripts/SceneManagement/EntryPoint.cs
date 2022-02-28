@@ -1,3 +1,4 @@
+using Medfable.Saving;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -34,11 +35,14 @@ namespace Medfable.SceneManagement
         {
             //Fades out of the current scene before loading in the new scene
             DontDestroyOnLoad(gameObject);
+            SaveManager saveManager = FindObjectOfType<SaveManager>();
             FadeEffect fade = FindObjectOfType<FadeEffect>();
             yield return fade.FadeOutScene();
+            saveManager.SaveMode();
             yield return SceneManager.LoadSceneAsync(sceneReference);
-            
+
             //After new scene loads it will update the player and entry point then fade back into the scene
+            saveManager.LoadMode();
             EntryPoint entryDest = GetOtherEntryPoint();
             UpdatePlayer(entryDest);
             yield return fade.FadeInScene();
@@ -51,10 +55,12 @@ namespace Medfable.SceneManagement
             if (entryDest != null)
             {
                 GameObject player = GameObject.FindWithTag("Player");
+                player.GetComponent<NavMeshAgent>().enabled = false;
                 Transform spawnPoint = entryDest.transform.GetChild(0);
                 player.GetComponent<NavMeshAgent>().Warp(spawnPoint.position);
                 player.transform.position = spawnPoint.position;
                 player.transform.rotation = spawnPoint.rotation;
+                player.GetComponent<NavMeshAgent>().enabled = true;
             }
         }
 

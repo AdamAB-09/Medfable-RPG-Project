@@ -7,7 +7,7 @@ namespace Medfable.SceneManagement
 {
     public class CutsceneManager : MonoBehaviour
     {
-        private bool hasPlayedCutscene = false;
+        private static bool hasPlayedCutscene = false;
         private GameObject player;
 
         //Start is called before the first frame update
