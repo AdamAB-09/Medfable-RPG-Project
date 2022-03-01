@@ -37,6 +37,10 @@ PrefabInstance:
       propertyPath: health
       value: 140
       objectReference: {fileID: 0}
+    - target: {fileID: -4425442023749289333, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
+      propertyPath: guid
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 5766443166899519508, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0

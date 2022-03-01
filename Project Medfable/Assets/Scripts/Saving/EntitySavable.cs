@@ -1,4 +1,5 @@
 using Medfable.Core;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
@@ -43,19 +44,28 @@ namespace Medfable.Saving
         }
 
         //Allows the current object state to be saved
-        public object CatchObjState()
+        public Dictionary<string, object> CatchObjState()
         {
-            return new SerializePosition(transform.position);
+            Dictionary<string, object> gameState = new Dictionary<string, object>();
+            foreach (ISavable savable in GetComponents<ISavable>())
+            {
+                gameState[savable.GetType().ToString()] = savable.CatchObjAttributes();
+            }
+            return gameState;
         }
 
         //Restores the prior state of the object
-        public void RestoreObjState(object obj)
+        public void RestoreObjState(object gameState)
         {
-            SerializePosition pos = (SerializePosition)obj;
-            GetComponent<NavMeshAgent>().enabled = false;
-            transform.position = pos.GetVector3();
-            GetComponent<NavMeshAgent>().enabled = true;
-            GetComponent<InteractionScheduler>().CancelCurrentAction();
+            Dictionary<string, object> dictState = (Dictionary<string, object>)gameState;
+            foreach (ISavable savable in GetComponents<ISavable>())
+            {
+                string savableType = savable.GetType().ToString();
+                if (dictState.ContainsKey(savableType))
+                {
+                    savable.RestoreObjAttributes(dictState[savableType]);
+                }
+            }
         }
 
     }
