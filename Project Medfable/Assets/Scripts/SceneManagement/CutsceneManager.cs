@@ -2,12 +2,13 @@ using UnityEngine.Playables;
 using UnityEngine;
 using Medfable.Core;
 using Medfable.Controller;
+using Medfable.Saving;
 
 namespace Medfable.SceneManagement
 {
-    public class CutsceneManager : MonoBehaviour
+    public class CutsceneManager : MonoBehaviour, ISavable
     {
-        private static bool hasPlayedCutscene = false;
+        private bool hasPlayedCutscene = false;
         private GameObject player;
 
         //Start is called before the first frame update
@@ -43,5 +44,16 @@ namespace Medfable.SceneManagement
             }
         }
 
+        //Checks whether the cutscene has been played when saving 
+        public object CatchObjAttributes()
+        {
+            return hasPlayedCutscene;
+        }
+
+        //Loading a file will restore whether the cutscene has already been played or not
+        public void RestoreObjAttributes(object obj)
+        {
+            hasPlayedCutscene = (bool)obj;
+        }
     }
 }
