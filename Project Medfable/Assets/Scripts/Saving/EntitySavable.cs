@@ -1,14 +1,16 @@
 using Medfable.Core;
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Medfable.Saving
 {
     [ExecuteAlways]
     public class EntitySavable : MonoBehaviour
     {
+        static Dictionary<string, EntitySavable> dictGuids = new Dictionary<string, EntitySavable>();
+
         [SerializeField]
         private string guid = "";
 
@@ -29,11 +31,28 @@ namespace Medfable.Saving
             SerializedProperty property = serializedObj.FindProperty("guid");
             
             //If the GUID is empty then it will generate a GUID for the object in editor mode
-            if (string.IsNullOrEmpty(property.stringValue))
+            if (string.IsNullOrEmpty(property.stringValue) || GuidTaken(property.stringValue))
             {
                 property.stringValue = System.Guid.NewGuid().ToString();
                 serializedObj.ApplyModifiedProperties();
             }
+            dictGuids[property.stringValue] = this;
+        }
+
+        /*Checks whether a GUID doesn't exist in the dictionary or belong to this entity,
+        * otherwise the GUID is taken already
+        */
+        private bool GuidTaken(string entityGuid) 
+        {
+            if (!dictGuids.ContainsKey(entityGuid)) { return false; }
+            if (dictGuids[entityGuid] == this) { return false; }
+            return true;
+        }
+
+        //Whenever the savable entity is destroyed, its GUID is removed from the dictionary
+        private void OnDestroy()
+        {
+            dictGuids.Remove(guid);
         }
 #endif
 

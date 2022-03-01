@@ -5,7 +5,7 @@ namespace Medfable.Saving
     [System.Serializable]
     public class SerializePosition
     {
-        public float[] position;
+        private float[] position;
 
         //Constructor in order to serialize a position of an object
         public SerializePosition(Vector3 nonSerializedPos)
