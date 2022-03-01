@@ -59,6 +59,12 @@ namespace Medfable.Combat
             GetComponent<Animator>().SetTrigger("stopAttack");
         }
 
+        //Checks whether there is a valid target that is alive in order to be attacked
+        public bool CanAttack(CombatTarget target)
+        {
+            return target && target.GetComponent<HealthSystem>().IsAlive;
+        }
+
         // Generates an attack cooldown after the entity performs the combat animation
         private IEnumerator Cooldown()
         {

@@ -1,11 +1,12 @@
 using Medfable.Core;
+using Medfable.Saving;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace Medfable.Combat
 {
-    public class HealthSystem : MonoBehaviour
+    public class HealthSystem : MonoBehaviour, ISavable
     {
         private bool isAlive = true;
         [SerializeField]
@@ -46,19 +47,32 @@ namespace Medfable.Combat
             isAlive = false;
             GetComponent<Animator>().SetTrigger("die");
             GetComponent<InteractionScheduler>().CancelCurrentAction();
-            
-            // Remove dead body from scene only if it's an enemy
-            if (gameObject != player)
-            {
-                StartCoroutine(RemoveDeadBody());
-            }
         }
 
-        // Cooldown in which the dead body after they perform the death animation is removed from the game
-        private IEnumerator RemoveDeadBody()
+        //Stores the health of the entity when saving
+        public object CatchObjAttributes()
         {
-            yield return new WaitForSeconds(deathCooldown);
-            Destroy(gameObject);
+            return health;
+        }
+
+        //Loads the the most recent health of the entity
+        public void RestoreObjAttributes(object obj)
+        {
+            health = (float)obj;
+            
+            /*The entity is dead if its health is below 0 however, if an entity died and the user loads
+            * a save with the entity alive then their isAlive variable needs to be reset to true and animations
+            */
+            if (health <= 0)
+            {
+                Die();
+            }
+            else if (isAlive == false)
+            {
+                isAlive = true;
+                GetComponent<Animator>().Rebind();
+                GetComponent<Animator>().Update(0f);
+            }
         }
     }
 }
