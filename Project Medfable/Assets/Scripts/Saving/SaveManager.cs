@@ -1,3 +1,5 @@
+using Medfable.SceneManagement;
+using System.Collections;
 using UnityEngine;
 
 namespace Medfable.Saving
@@ -6,10 +8,13 @@ namespace Medfable.Saving
     {
         private const string saveFile = "player-save.sav";
 
-        //Load the most recent file into the game whenever user launches the game
-        private void Start()
+        //Load the most recent scene data at the start of the game while fading out/in
+        private IEnumerator Start()
         {
-            LoadMode();
+            FadeEffect fade = FindObjectOfType<FadeEffect>();
+            yield return fade.FadeOutInstant();
+            yield return GetComponent<SaveSystem>().LoadLastScene(saveFile);
+            fade.EnableFade();
         }
 
         //Checks whether the player is pressing the key to save or load a file

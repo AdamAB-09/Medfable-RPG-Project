@@ -46,10 +46,12 @@ namespace Medfable.SceneManagement
 
             /*After the new scene loads it will load the player's latest file in that scene 
             * and will update the player to spawn at the spawn point of the destination entry point
+            * and save again in the other scene
             */
             saveManager.LoadMode();
             EntryPoint entryDest = GetOtherEntryPoint();
             UpdatePlayer(entryDest);
+            saveManager.SaveMode();
             yield return fade.FadeInScene();
             Destroy(gameObject);
         }

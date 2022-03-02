@@ -1,13 +1,15 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 namespace Medfable.Saving
 {
     public class SaveSystem : MonoBehaviour
     {
+        private const string prevSceneIndex = "Previous Scene";
 
         //Merges previous game state with the current one and then saves the file
         public void Save(string saveFile)
@@ -32,6 +34,24 @@ namespace Medfable.Saving
         public void Load(string loadFile)
         {
             GetGameState(LoadFile(loadFile));
+        }
+
+        public IEnumerator LoadLastScene(string loadFile)
+        {
+            Dictionary<string, object> gameState = LoadFile(loadFile);
+            if (!gameState.ContainsKey(prevSceneIndex))
+            {
+                GetGameState(gameState);
+                yield break; 
+            }
+
+            int prevIndex = (int)gameState[prevSceneIndex];
+            if (prevIndex != SceneManager.GetActiveScene().buildIndex)
+            {
+                yield return SceneManager.LoadSceneAsync(prevIndex);
+            }
+
+            GetGameState(gameState);
         }
 
         /*Loads up most current save file by deserializing the file otherwise if a
@@ -66,7 +86,7 @@ namespace Medfable.Saving
                 string entityGuid = entity.GetGUID();
                 if (gameState.ContainsKey(entityGuid))
                 {
-                   entity.RestoreObjState(gameState[entityGuid]);
+                    entity.RestoreObjState(gameState[entityGuid]);
                 }
             }
         }
@@ -81,6 +101,7 @@ namespace Medfable.Saving
                 string entityGuid = entity.GetGUID();
                 gameState[entityGuid] = entity.CatchObjState();
             }
+            gameState[prevSceneIndex] = SceneManager.GetActiveScene().buildIndex;
         }
     }
 }

@@ -1,8 +1,6 @@
 using Medfable.Core;
 using Medfable.Saving;
-using System.Collections;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Medfable.Combat
 {
@@ -12,7 +10,6 @@ namespace Medfable.Combat
         [SerializeField]
         float health = 100f;
         [SerializeField]
-        float deathCooldown = 3f;
         private GameObject player;
 
         // Start is called before the first frame update
