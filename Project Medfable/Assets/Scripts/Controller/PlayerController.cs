@@ -37,7 +37,8 @@ namespace Medfable.Controller
                 foreach (RaycastHit hit in hits)
                 {
                     CombatTarget target = hit.collider.GetComponent<CombatTarget>();
-                    if (GetComponent<EntityCombat>().CanAttack(target))
+                    if (target == null) { continue; }
+                    if (GetComponent<EntityCombat>().CanAttack(target.gameObject))
                     {
                         GetComponent<EntityCombat>().Attack(target.gameObject);
                         return true;

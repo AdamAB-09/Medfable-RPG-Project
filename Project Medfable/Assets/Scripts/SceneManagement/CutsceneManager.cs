@@ -3,6 +3,7 @@ using UnityEngine;
 using Medfable.Core;
 using Medfable.Controller;
 using Medfable.Saving;
+using UnityEngine.AI;
 
 namespace Medfable.SceneManagement
 {
@@ -33,6 +34,7 @@ namespace Medfable.SceneManagement
         {
             player.GetComponent<InteractionScheduler>().CancelCurrentAction();
             player.GetComponent<PlayerController>().enabled = false;
+            player.GetComponent<NavMeshAgent>().isStopped = true;
             saveManager.enabled = false;
         }
 

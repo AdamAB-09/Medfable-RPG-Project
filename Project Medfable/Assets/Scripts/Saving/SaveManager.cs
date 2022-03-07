@@ -24,7 +24,7 @@ namespace Medfable.Saving
             {
                 SaveMode();
             }
-            if (Input.GetKeyDown(KeyCode.L))
+            else if (Input.GetKeyDown(KeyCode.L))
             {
                 LoadMode();
             }

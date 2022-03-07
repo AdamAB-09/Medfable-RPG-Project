@@ -18,7 +18,8 @@ namespace Medfable.Combat
         // Update is called once per frame
         private void Update()
         {
-            if (target != null && target.IsAlive)
+            if (target == null) { return; }
+            if (CanAttack(target.gameObject))
             {
                 float distance = Vector3.Distance(transform.position, target.transform.position);
                 GetComponent<EntityMovement>().MoveToEntity(target.transform.position, attackRange);
@@ -55,12 +56,11 @@ namespace Medfable.Combat
         public void CancelAction()
         {
             target = null;
-            GetComponent<EntityMovement>().CancelAction();
             GetComponent<Animator>().SetTrigger("stopAttack");
         }
 
         //Checks whether there is a valid target that is alive in order to be attacked
-        public bool CanAttack(CombatTarget target)
+        public bool CanAttack(GameObject target)
         {
             return target && target.GetComponent<HealthSystem>().IsAlive;
         }

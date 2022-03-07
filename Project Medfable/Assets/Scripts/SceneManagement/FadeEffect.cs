@@ -3,8 +3,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Medfable.SceneManagement
-
 {
+    /* Idea of using animations for fade in/out between scenes inpsired by Brackey's video 
+    * "How to Fade Between Scenes in Unity": https://www.youtube.com/watch?v=Oadq-IrOazg&t=240s
+    */
     public class FadeEffect : MonoBehaviour
     {
         [SerializeField]
@@ -17,6 +19,7 @@ namespace Medfable.SceneManagement
         private float FadeInstantTime = 0.5f;
         private Image image;
 
+        // Instantiate all the variables from the first frame
         private void Start()
         {
             animator.enabled = false;
