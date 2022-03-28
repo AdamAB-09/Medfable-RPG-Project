@@ -30,7 +30,7 @@ UI Demo
 Project Medfable
 ---------
 
-This is the sandbox for the RPG that's in building process
+Contains all the scripts and assets for the RPG game I'm making
 
-* Designed a small playable space to test out the different functionalities
-* Currently there is movement and some elements of combat added to this sandbox along with other core features 
+* Multiple scene interaction 
+* There is enemy AI, combat, movement, animations, saving/loading & a cinematic scene thus far
