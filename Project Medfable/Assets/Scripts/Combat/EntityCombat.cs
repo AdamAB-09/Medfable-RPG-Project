@@ -18,18 +18,17 @@ namespace Medfable.Combat
         [Header("Variables for instantiating")]
         private HealthSystem target;
         [SerializeField]
-        private GameObject weapon = null;
-        [SerializeField]
         private Transform weaponPos = null;
         [SerializeField]
-        private AnimatorOverrideController overrideWeapon = null;
+        private WeaponSystem weapon = null;
+
 
         //Spawn weapon for an entity if they have any set to them
         private void Start()
         {
-            Instantiate(weapon, weaponPos);
+            if (weapon == null) { return; }
             Animator animator = GetComponent<Animator>();
-            animator.runtimeAnimatorController = overrideWeapon;
+            weapon.SpawnWeapon(animator, weaponPos);
         }
 
         // Update is called once per frame
