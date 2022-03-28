@@ -7,13 +7,30 @@ namespace Medfable.Combat
 {
     public class EntityCombat : MonoBehaviour, IInteraction
     {
-        private HealthSystem target;
+        [Header("Attacking attributes")]
         [SerializeField]
         private float attackRange = 1.9f;
         [SerializeField]
         private float attackCooldown = 2f;
         private bool isCooldown = false;
         private float weaponDamage = 20f;
+
+        [Header("Variables for instantiating")]
+        private HealthSystem target;
+        [SerializeField]
+        private GameObject weapon = null;
+        [SerializeField]
+        private Transform weaponPos = null;
+        [SerializeField]
+        private AnimatorOverrideController overrideWeapon = null;
+
+        //Spawn weapon for an entity if they have any set to them
+        private void Start()
+        {
+            Instantiate(weapon, weaponPos);
+            Animator animator = GetComponent<Animator>();
+            animator.runtimeAnimatorController = overrideWeapon;
+        }
 
         // Update is called once per frame
         private void Update()
