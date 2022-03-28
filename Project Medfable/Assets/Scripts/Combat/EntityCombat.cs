@@ -9,11 +9,8 @@ namespace Medfable.Combat
     {
         [Header("Attacking attributes")]
         [SerializeField]
-        private float attackRange = 1.9f;
-        [SerializeField]
         private float attackCooldown = 2f;
         private bool isCooldown = false;
-        private float weaponDamage = 20f;
 
         [Header("Variables for instantiating")]
         private HealthSystem target;
@@ -21,14 +18,13 @@ namespace Medfable.Combat
         private Transform weaponPos = null;
         [SerializeField]
         private WeaponSystem weapon = null;
+        private WeaponSystem currentWeapon = null;
 
 
-        //Spawn weapon for an entity if they have any set to them
+        //Equip weapon for an entity if they have any set to them
         private void Start()
         {
-            if (weapon == null) { return; }
-            Animator animator = GetComponent<Animator>();
-            weapon.SpawnWeapon(animator, weaponPos);
+            EquipWeapon(weapon);
         }
 
         // Update is called once per frame
@@ -38,15 +34,23 @@ namespace Medfable.Combat
             if (CanAttack(target.gameObject))
             {
                 float distance = Vector3.Distance(transform.position, target.transform.position);
-                GetComponent<EntityMovement>().MoveToEntity(target.transform.position, attackRange);
+                GetComponent<EntityMovement>().MoveToEntity(target.transform.position, currentWeapon.GetAttackRange());
                 AttackHandler(distance);
             }
+        }
+
+        // Allows the entity to equip the weapon and change animation to it
+        public void EquipWeapon(WeaponSystem weapon)
+        {
+            currentWeapon = weapon;
+            Animator animator = GetComponent<Animator>();
+            weapon.SpawnWeapon(animator, weaponPos);
         }
 
         // Controls the attack behaviour of an entity
         private void AttackHandler(float distance)
         {
-            if (distance <= attackRange && !isCooldown)
+            if (distance <= currentWeapon.GetAttackRange() && !isCooldown)
             {
                 transform.LookAt(target.transform);
                 GetComponent<Animator>().SetTrigger("attack");
@@ -58,7 +62,7 @@ namespace Medfable.Combat
         public void Hit()
         {
             if (target == null) { return; }
-            target.GetComponent<HealthSystem>().TakeDamage(weaponDamage);
+            target.GetComponent<HealthSystem>().TakeDamage(currentWeapon.GetDamage());
         }
 
         // User will start attacking the target

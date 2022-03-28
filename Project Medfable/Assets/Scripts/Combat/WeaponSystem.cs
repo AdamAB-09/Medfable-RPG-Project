@@ -6,14 +6,34 @@ namespace Medfable.Combat
     public class WeaponSystem : ScriptableObject
     {
         [SerializeField]
+        private float weaponDamage = 20f;
+        [SerializeField]
+        private float attackRange = 1.9f;
+        [SerializeField]
         private AnimatorOverrideController weaponAnimate = null;
         [SerializeField]
         private GameObject weapon = null;
 
         public void SpawnWeapon(Animator animator, Transform weaponPos)
         {
-            Instantiate(weapon, weaponPos);
-            animator.runtimeAnimatorController = weaponAnimate;
+            if (weapon != null)
+            {
+                Instantiate(weapon, weaponPos);
+            }
+            if (weaponAnimate != null)
+            {
+                animator.runtimeAnimatorController = weaponAnimate;
+            }
+        }
+
+        public float GetDamage()
+        {
+            return weaponDamage;
+        }
+
+        public float GetAttackRange()
+        {
+            return attackRange;
         }
 
     }

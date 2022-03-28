@@ -9,7 +9,6 @@ namespace Medfable.Combat
         private bool isAlive = true;
         [SerializeField]
         float health = 100f;
-        [SerializeField]
         private GameObject player;
 
         // Start is called before the first frame update
