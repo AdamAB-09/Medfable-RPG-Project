@@ -13,11 +13,23 @@ namespace Medfable.Combat
         private AnimatorOverrideController weaponAnimate = null;
         [SerializeField]
         private GameObject weapon = null;
+        [SerializeField]
+        private bool isLeftHanded = false;
 
-        public void SpawnWeapon(Animator animator, Transform weaponPos)
+        // Will spawn the weapon for the the entity to use and equip it in its correct hand
+        public void SpawnWeapon(Animator animator, Transform leftWeaponPos, Transform rightWeaponPos)
         {
             if (weapon != null)
             {
+                Transform weaponPos;
+                if (isLeftHanded)
+                {
+                    weaponPos = leftWeaponPos;
+                }
+                else
+                {
+                    weaponPos = rightWeaponPos;
+                }
                 Instantiate(weapon, weaponPos);
             }
             if (weaponAnimate != null)
@@ -26,11 +38,13 @@ namespace Medfable.Combat
             }
         }
 
+        // Gets the weapon damage of the current weapon
         public float GetDamage()
         {
             return weaponDamage;
         }
 
+        // Gets the attacking range of the cureent weapon
         public float GetAttackRange()
         {
             return attackRange;

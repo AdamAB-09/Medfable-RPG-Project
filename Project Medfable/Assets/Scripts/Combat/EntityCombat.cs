@@ -15,7 +15,9 @@ namespace Medfable.Combat
         [Header("Variables for instantiating")]
         private HealthSystem target;
         [SerializeField]
-        private Transform weaponPos = null;
+        private Transform rightWeaponPos = null;
+        [SerializeField]
+        private Transform leftWeaponPos = null;
         [SerializeField]
         private WeaponSystem weapon = null;
         private WeaponSystem currentWeapon = null;
@@ -44,7 +46,7 @@ namespace Medfable.Combat
         {
             currentWeapon = weapon;
             Animator animator = GetComponent<Animator>();
-            weapon.SpawnWeapon(animator, weaponPos);
+            weapon.SpawnWeapon(animator, leftWeaponPos, rightWeaponPos);
         }
 
         // Controls the attack behaviour of an entity

@@ -122,6 +122,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
+--- !u!4 &500288244015534796 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 403948, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
+  m_PrefabInstance: {fileID: 500288244015938336}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &500288244015477412 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 461188, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
@@ -148,6 +153,14 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 8687ac4289d6a6c43a8cebb5f158c4df, type: 2}
     - target: {fileID: 7882320030434224866, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
       propertyPath: weaponPos
+      value: 
+      objectReference: {fileID: 500288244015477412}
+    - target: {fileID: 7882320030434224866, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
+      propertyPath: leftWeaponPos
+      value: 
+      objectReference: {fileID: 500288244015534796}
+    - target: {fileID: 7882320030434224866, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
+      propertyPath: rightWeaponPos
       value: 
       objectReference: {fileID: 500288244015477412}
     - target: {fileID: 8711260815396773641, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
