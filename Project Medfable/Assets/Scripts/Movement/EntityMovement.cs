@@ -80,9 +80,8 @@ namespace Medfable.Movement
         public void RestoreObjAttributes(object obj)
         {
             SerializePosition pos = (SerializePosition)obj;
-            GetComponent<NavMeshAgent>().enabled = false;
+            gameObject.GetComponent<NavMeshAgent>().Warp(pos.GetVector3());
             transform.position = pos.GetVector3();
-            GetComponent<NavMeshAgent>().enabled = true;
             CancelAction();
         }
     }

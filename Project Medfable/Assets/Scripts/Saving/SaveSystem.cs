@@ -36,6 +36,9 @@ namespace Medfable.Saving
             GetGameState(LoadFile(loadFile));
         }
 
+        /*Loads the last scene the player saved in via searching the game state dictionary for 
+        * corresponding index
+        */
         public IEnumerator LoadLastScene(string loadFile)
         {
             Dictionary<string, object> gameState = LoadFile(loadFile);
@@ -81,12 +84,14 @@ namespace Medfable.Saving
         //Restores a prior game state by checking all the savable entities in a saved dictionary
         private void GetGameState(Dictionary<string, object> gameState)
         {
+            if (gameState.Count == 0) { return; }
+            
             foreach (EntitySavable entity in FindObjectsOfType<EntitySavable>())
             {
-                string entityGuid = entity.GetGUID();
+                string entityGuid = entity.GetGuid();
                 if (gameState.ContainsKey(entityGuid))
                 {
-                    entity.RestoreObjState(gameState[entityGuid]);
+                    entity.GetObjState(gameState[entityGuid]);
                 }
             }
         }
@@ -98,7 +103,7 @@ namespace Medfable.Saving
         {
             foreach (EntitySavable entity in FindObjectsOfType<EntitySavable>())
             {
-                string entityGuid = entity.GetGUID();
+                string entityGuid = entity.GetGuid();
                 gameState[entityGuid] = entity.CatchObjState();
             }
             gameState[prevSceneIndex] = SceneManager.GetActiveScene().buildIndex;

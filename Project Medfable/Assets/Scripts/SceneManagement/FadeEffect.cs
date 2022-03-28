@@ -19,7 +19,7 @@ namespace Medfable.SceneManagement
         private float FadeInstantTime = 0.5f;
         private Image image;
 
-        // Instantiate all the variables from the first frame
+        // Instantiate all the variables from the first frame and disable animator to avoid glitches
         private void Start()
         {
             animator.enabled = false;

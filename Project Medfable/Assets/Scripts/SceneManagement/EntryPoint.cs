@@ -62,12 +62,10 @@ namespace Medfable.SceneManagement
             if (entryDest != null)
             {
                 GameObject player = GameObject.FindWithTag("Player");
-                player.GetComponent<NavMeshAgent>().enabled = false;
                 Transform spawnPoint = entryDest.transform.GetChild(0);
                 player.GetComponent<NavMeshAgent>().Warp(spawnPoint.position);
                 player.transform.position = spawnPoint.position;
                 player.transform.rotation = spawnPoint.rotation;
-                player.GetComponent<NavMeshAgent>().enabled = true;
             }
         }
 

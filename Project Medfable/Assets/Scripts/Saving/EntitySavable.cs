@@ -30,7 +30,7 @@ namespace Medfable.Saving
             SerializedObject serializedObj = new SerializedObject(this);
             SerializedProperty property = serializedObj.FindProperty("guid");
             
-            //If the GUID is empty then it will generate a GUID for the object in editor mode
+            //If the GUID is empty or taken then it will generate a GUID for the object in editor mode
             if (string.IsNullOrEmpty(property.stringValue) || GuidTaken(property.stringValue))
             {
                 property.stringValue = System.Guid.NewGuid().ToString();
@@ -57,7 +57,7 @@ namespace Medfable.Saving
 #endif
 
         //Gets the GUID of the savable entity
-        public string GetGUID()
+        public string GetGuid()
         {
             return guid;
         }
@@ -74,7 +74,7 @@ namespace Medfable.Saving
         }
 
         //Restores the prior state of the object
-        public void RestoreObjState(object gameState)
+        public void GetObjState(object gameState)
         {
             Dictionary<string, object> dictState = (Dictionary<string, object>)gameState;
             foreach (ISavable savable in GetComponents<ISavable>())
