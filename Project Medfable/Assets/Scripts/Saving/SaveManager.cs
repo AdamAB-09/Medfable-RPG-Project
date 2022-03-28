@@ -17,19 +17,6 @@ namespace Medfable.Saving
             fade.EnableFade();
         }
 
-        //Checks whether the player is pressing the key to save or load a file
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                SaveMode();
-            }
-            else if (Input.GetKeyDown(KeyCode.L))
-            {
-                LoadMode();
-            }
-        }
-
         //Allows the user to load the recent file
         public void LoadMode()
         {

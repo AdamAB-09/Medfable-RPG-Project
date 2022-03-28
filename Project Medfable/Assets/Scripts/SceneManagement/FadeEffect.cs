@@ -16,7 +16,7 @@ namespace Medfable.SceneManagement
         [SerializeField]
         private float fadeInTime = 1f;
         [SerializeField]
-        private float FadeInstantTime = 0.5f;
+        private float fadeInstantTime = 0.5f;
         private Image image;
 
         // Instantiate all the variables from the first frame and disable animator to avoid glitches
@@ -46,7 +46,7 @@ namespace Medfable.SceneManagement
             Color tempColor = image.color;
             tempColor.a = 1f;
             image.color = tempColor;
-            yield return new WaitForSeconds(FadeInstantTime);
+            yield return new WaitForSeconds(fadeInstantTime);
         }
 
         //Re-enable the fade effects after fading out instantly previously
