@@ -1,3 +1,4 @@
+using Medfable.Saving;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -32,15 +33,25 @@ namespace Medfable.SceneManagement
         //Player loads into a new scene at the corresponding entry point that is connected to this
         private IEnumerator SwitchScene()
         {
-            //Fades out of the current scene before loading in the new scene
+            /*Fades out of the current scene before loading in the new scene and it will save the current
+            * progress of the player automatically so next time they will spawn in with their progress
+            */
             DontDestroyOnLoad(gameObject);
+            SaveManager saveManager = FindObjectOfType<SaveManager>();
             FadeEffect fade = FindObjectOfType<FadeEffect>();
             yield return fade.FadeOutScene();
+            UpdatePlayer(this);
+            saveManager.SaveMode();
             yield return SceneManager.LoadSceneAsync(sceneReference);
-            
-            //After new scene loads it will update the player and entry point then fade back into the scene
+
+            /*After the new scene loads it will load the player's latest file in that scene 
+            * and will update the player to spawn at the spawn point of the destination entry point
+            * and save again in the other scene
+            */
+            saveManager.LoadMode();
             EntryPoint entryDest = GetOtherEntryPoint();
             UpdatePlayer(entryDest);
+            saveManager.SaveMode();
             yield return fade.FadeInScene();
             Destroy(gameObject);
         }

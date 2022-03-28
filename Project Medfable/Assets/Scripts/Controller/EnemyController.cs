@@ -30,7 +30,7 @@ namespace Medfable.Controller
         private int currentCheckpointIndex = 0;
         private bool isWaitingAtCP = false;
 
-        [Header("Variables for intalising")]
+        [Header("Variables for instantiation")]
         private EntityCombat enemy;
         private GameObject player;
         private Vector3 startingLocation;
@@ -39,7 +39,7 @@ namespace Medfable.Controller
         private NavMeshAgent agent;
 
 
-        // Initalise all the variables from the first frame
+        // Instantiate all the variables from the first frame
         private void Start()
         {
             health = GetComponent<HealthSystem>();

@@ -31,13 +31,14 @@ namespace Medfable.Controller
                 Ray cameraRay = GetCameraRay();
                 RaycastHit[] hits = Physics.RaycastAll(cameraRay);
 
-                /* If one of the raycast hits has a CombatTarget script attached then allow
+                /* If one of the raycast hits has a CombatTarget script attached and is alive then allow
                    player to attack
                 */
                 foreach (RaycastHit hit in hits)
                 {
                     CombatTarget target = hit.collider.GetComponent<CombatTarget>();
-                    if (target != null)
+                    if (target == null) { continue; }
+                    if (GetComponent<EntityCombat>().CanAttack(target.gameObject))
                     {
                         GetComponent<EntityCombat>().Attack(target.gameObject);
                         return true;

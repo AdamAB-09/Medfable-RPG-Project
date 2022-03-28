@@ -14,12 +14,12 @@ namespace Medfable.Controller
             {
                 int nextCPIndex = GetNextCPIndex(currentCPIndex);
                 DrawCheckpoint(currentCPIndex);
-                DrawCheckpointLines(currentCPIndex, nextCPIndex);
+                DrawCPLines(currentCPIndex, nextCPIndex);
             }
         }
 
         // Draw the paths between every checkpoint
-        private void DrawCheckpointLines(int currentCPIndex, int nextCPIndex)
+        private void DrawCPLines(int currentCPIndex, int nextCPIndex)
         {
             Gizmos.color = Color.red;
             Gizmos.DrawLine(GetCheckpoint(currentCPIndex), GetCheckpoint(nextCPIndex));
