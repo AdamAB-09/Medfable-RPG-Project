@@ -19,6 +19,7 @@ namespace Medfable.Combat
             transform.Translate(Vector3.forward * Time.deltaTime * projectileSpeed);
         }
 
+        // Whenever the arrows collides with an entity, it will output damage and get removed
         private void OnTriggerEnter(Collider other)
         {
             if (other.GetComponent<HealthSystem>() == combatTarget)
