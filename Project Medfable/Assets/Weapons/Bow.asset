@@ -15,5 +15,5 @@ MonoBehaviour:
   weaponDamage: 20
   attackRange: 11
   weaponAnimate: {fileID: 22100000, guid: c34da58417c10a241ab6a6421a0b6809, type: 2}
-  weapon: {fileID: 0}
+  weapon: {fileID: 458830998955144292, guid: d0e7bb319903e914e9ac66f91f03c7a4, type: 3}
   isLeftHanded: 1
