@@ -6,6 +6,7 @@ namespace Medfable.Combat
     {
         [SerializeField]
         private float projectileSpeed = 2f;
+        private float projectileDamage = 0f;
         private HealthSystem combatTarget = null;
 
         // Projectile faces and hits the entity's central body at a given speed
@@ -18,9 +19,19 @@ namespace Medfable.Combat
             transform.Translate(Vector3.forward * Time.deltaTime * projectileSpeed);
         }
 
-        // Sets a combat target for the entity to attack
-        public void SetCombatTarget(HealthSystem target)
+        private void OnTriggerEnter(Collider other)
         {
+            if (other.GetComponent<HealthSystem>() == combatTarget)
+            {
+                combatTarget.TakeDamage(projectileDamage);
+                Destroy(gameObject);
+            }
+        }
+
+        // Sets a combat target for the entity to attack
+        public void SetCombatTarget(HealthSystem target, float damage)
+        {
+            projectileDamage = damage;
             combatTarget = target;
         }
     }

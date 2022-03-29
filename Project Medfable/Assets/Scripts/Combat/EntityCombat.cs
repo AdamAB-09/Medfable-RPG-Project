@@ -60,7 +60,7 @@ namespace Medfable.Combat
             }
         }
 
-        // Event for the animator to use - when a projectile touches the target it will call Hit()
+        // Event for the animator to use - when a projectile is being fired
         public void Shoot()
         {
             Hit();

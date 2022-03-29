@@ -71,7 +71,7 @@ namespace Medfable.Combat
         {
             Transform weaponTransform = GetWeaponTransform(leftWepPos, rightWepPos);
             ProjectileSystem newProjectile = Instantiate(projectile, weaponTransform.position, Quaternion.identity);
-            newProjectile.SetCombatTarget(combatTarget);
+            newProjectile.SetCombatTarget(combatTarget, weaponDamage);
         }
     }
 }
