@@ -60,11 +60,24 @@ namespace Medfable.Combat
             }
         }
 
+        // Event for the animator to use - when a projectile touches the target it will call Hit()
+        public void Shoot()
+        {
+            Hit();
+        }
+
         // Event for the animator to use - this is called when the entity's animation shows a complete hit
         public void Hit()
         {
             if (target == null) { return; }
-            target.GetComponent<HealthSystem>().TakeDamage(currentWeapon.GetDamage());
+            if (!currentWeapon.isUsingProjectile())
+            {
+                target.GetComponent<HealthSystem>().TakeDamage(currentWeapon.GetDamage());
+            }
+            else
+            {
+                currentWeapon.UseProjectile(target, leftWeaponPos, rightWeaponPos);
+            }
         }
 
         // User will start attacking the target
