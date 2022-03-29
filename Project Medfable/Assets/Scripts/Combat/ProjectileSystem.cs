@@ -9,19 +9,24 @@ namespace Medfable.Combat
         private float projectileDamage = 0f;
         private HealthSystem combatTarget = null;
 
-        // Projectile faces and hits the entity's central body at a given speed
-        public void Update()
+        // Projectile faces towards the entity's central body but doesn't follow them
+        private void Start()
         {
             if (combatTarget == null) { return; }
-
             Vector3 aimLocation = combatTarget.GetComponent<Collider>().bounds.center;
             transform.LookAt(aimLocation);
+        }
+
+        // Projectile moves forward at a given speed per frame
+        public void Update()
+        {
             transform.Translate(Vector3.forward * Time.deltaTime * projectileSpeed);
         }
 
         // Whenever the arrows collides with an entity, it will output damage and get removed
         private void OnTriggerEnter(Collider other)
         {
+            if (!combatTarget.IsAlive) { return; }
             if (other.GetComponent<HealthSystem>() == combatTarget)
             {
                 combatTarget.TakeDamage(projectileDamage);
