@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Medfable.Combat
@@ -17,19 +18,36 @@ namespace Medfable.Combat
         private GameObject weapon = null;
         [SerializeField]
         private bool isLeftHanded = false;
+        private const string weaponName = "Equipped Weapon";
 
-        // Will spawn the weapon for the the entity to use and equip it in its correct hand
+        // Will spawn the weapon for the the entity to use and equip it in its correct hand if it has any set to it
         public void SpawnWeapon(Animator animator, Transform leftWeaponPos, Transform rightWeaponPos)
         {
+            DestroyEquippedWeapon(leftWeaponPos, rightWeaponPos);
+
             if (weapon != null)
             {
                 Transform weaponTransform = GetWeaponTransform(leftWeaponPos, rightWeaponPos);
-                Instantiate(weapon, weaponTransform);
+                GameObject newWeapon  = Instantiate(weapon, weaponTransform);
+                newWeapon.name = weaponName;
             }
             if (weaponAnimate != null)
             {
                 animator.runtimeAnimatorController = weaponAnimate;
             }
+        }
+
+        // Checks whether there currently exists a weapon in the entity's hand and destroys it if true
+        private void DestroyEquippedWeapon(Transform leftWeaponPos, Transform rightWeaponPos)
+        {
+            Transform equippedWeapon = leftWeaponPos.Find(weaponName);
+            if (equippedWeapon == null)
+            {
+                equippedWeapon = rightWeaponPos.Find(weaponName);
+            }
+            if (equippedWeapon == null) { return; }
+
+            Destroy(equippedWeapon.gameObject);
         }
 
         // Gets the weapon position whether it's on the left or right hand
