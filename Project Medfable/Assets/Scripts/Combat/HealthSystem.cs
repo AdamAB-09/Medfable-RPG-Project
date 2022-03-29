@@ -1,6 +1,7 @@
 using Medfable.Core;
 using Medfable.Saving;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Medfable.Combat
 {
@@ -9,6 +10,8 @@ namespace Medfable.Combat
         private bool isAlive = true;
         [SerializeField]
         float health = 100f;
+        [SerializeField]
+        private UnityEvent damageEvent;
         private GameObject player;
 
         // Start is called before the first frame update
@@ -23,16 +26,19 @@ namespace Medfable.Combat
             get { return isAlive; }
         }
 
-        /* Whenever an entity takes damage reduce health, until health is 0 or below then the
-         * entity is removed from the scene
+        /* Whenever an entity takes damage reduce health and trigger event, until health is 0 or 
+         * below then the entity is removed from the scene
         */
         public void TakeDamage(float damage)
         {
             health -= damage;
-
             if (health <= 0)
             {
                 Die();
+            }
+            else if (damageEvent != null)
+            {
+                damageEvent.Invoke();
             }
         }
 

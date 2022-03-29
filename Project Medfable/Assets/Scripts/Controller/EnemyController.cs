@@ -16,7 +16,10 @@ namespace Medfable.Controller
         private float searchTime = 5f;
         [SerializeField]
         private float chaseSpeed = 4.8f;
+        [SerializeField]
+        private float aggroCooldown = 3f;
         private float playerLastSpotted = Mathf.Infinity;
+        private float lastAttacked = Mathf.Infinity;
 
         [Header("Patrolling mechanism")]
         [SerializeField]
@@ -55,11 +58,11 @@ namespace Medfable.Controller
         {
             if (!health.IsAlive) { return; }
             
-            /* Checks if enemy is within distance of the player and chases them otherwise they will
-             * either search for the player or return to their original position
+            /* Checks if enemy is currently in danger by the player and chases them otherwise they 
+             * will either search for the player or return to their original position
             */
             float distance = Vector3.Distance(player.transform.position, transform.position);
-            if (distance <= chaseRadius)
+            if (IsInDanger(distance) && enemy.CanAttack(player))
             {
                 AttackPlayer();
             }
@@ -72,6 +75,19 @@ namespace Medfable.Controller
                 GuardingBehaviour();
             }
             playerLastSpotted += Time.deltaTime;
+            lastAttacked += Time.deltaTime;
+        }
+
+        // Used as a damage event to reset the timer when the enemy is getting attacked
+        public void GettingAttacked()
+        {
+            lastAttacked = 0f;
+        }
+
+        // The enemy is in danger if the player is within its chase radius or its being currently attacked
+        private bool IsInDanger(float distance)
+        {
+            return distance <= chaseRadius || lastAttacked < aggroCooldown;
         }
 
         /* Enemy will perform guarding action in which they will either patrol or return to
