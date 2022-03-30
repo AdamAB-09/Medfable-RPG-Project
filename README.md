@@ -30,7 +30,7 @@ UI Demo
 Project Medfable
 ---------
 
-Contains all the scripts and assets for the RPG game I'm making
+Contains all the scripts and assets for the final year project RPG game
 
-* Multiple scene interaction 
-* There is enemy AI, combat, movement, animations, saving/loading & a cinematic scene thus far
+* Multiple scene interactions
+* There is enemy AI, combat with multiple weapons, movement, animations, pickup system, saving/loading & a cinematic scene.
