@@ -57,6 +57,15 @@ namespace Medfable.Saving
             GetGameState(gameState);
         }
 
+        public void DeleteSave(string saveFile)
+        {
+            string path = GetFilePath(saveFile);
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+        }
+
         /*Loads up most current save file by deserializing the file otherwise if a
         * load file doesn't exist it will create a new dict for whenever the user saves
         */

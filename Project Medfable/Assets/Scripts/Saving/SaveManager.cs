@@ -28,5 +28,10 @@ namespace Medfable.Saving
         {
             GetComponent<SaveSystem>().Save(saveFile);
         }
+
+        public void DeleteSaveMode()
+        {
+            GetComponent<SaveSystem>().DeleteSave(saveFile);
+        }
     }
 }
