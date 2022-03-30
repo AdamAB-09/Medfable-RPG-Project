@@ -74,13 +74,13 @@ namespace Medfable.Combat
             }
         }
 
-        //Stores the health of the entity when saving
+        // Stores the health of the entity when saving
         public object CatchObjAttributes()
         {
             return health;
         }
 
-        //Loads the the most recent health of the entity
+        // Loads the the most recent health of the entity
         public void RestoreObjAttributes(object obj)
         {
             health = (float)obj;

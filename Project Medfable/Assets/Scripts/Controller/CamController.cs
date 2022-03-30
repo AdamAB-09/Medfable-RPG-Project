@@ -5,8 +5,7 @@ namespace Medfable.Controller
 {
     public class CamController : MonoBehaviour
     {
-
-        // Update is called once per frame
+        // Checks per frame whether the player is scrolling
         private void Update()
         {
             // When the scrollwheel is adjusted then CamZoom script is called

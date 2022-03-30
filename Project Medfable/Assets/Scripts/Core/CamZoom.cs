@@ -13,7 +13,7 @@ namespace Medfable.Core
         [SerializeField]
         private float minZoom = 5f;
 
-        // Awake is called when script instances are being loaded 
+        // The virtual camera is instantiated before the game has started 
         private void Awake()
         {
             virtualCam = GetComponent<CinemachineVirtualCamera>();

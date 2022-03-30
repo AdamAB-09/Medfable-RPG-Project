@@ -15,13 +15,13 @@ namespace Medfable.SceneManagement
         [SerializeField]
         private EntryPointID destination;
 
-        //Used to identify each of the entry points uniquely via location and destination
+        // Used to identify each of the entry points uniquely via location and destination
         enum EntryPointID
         {
             NorthTown, EastTown, EastCrossroads, SouthCrossroads
         }
 
-        //Teleports the user to another scene whenever they pass through an entry point
+        // Teleports the user to another scene whenever they pass through an entry point
         private void OnTriggerEnter(Collider other)
         {
             if (other.tag == "Player")
@@ -30,7 +30,7 @@ namespace Medfable.SceneManagement
             }
         }
 
-        //Player loads into a new scene at the corresponding entry point that is connected to this
+        // Player loads into a new scene at the corresponding entry point that is connected to this
         private IEnumerator SwitchScene()
         {
             /*Fades out of the current scene before loading in the new scene and it will save the current
@@ -56,7 +56,7 @@ namespace Medfable.SceneManagement
             Destroy(gameObject);
         }
 
-        //The position and rotation of the player is adjusted to the spawn location of the entry point
+        // The position and rotation of the player is adjusted to the spawn location of the entry point
         private void UpdatePlayer(EntryPoint entryDest)
         {
             if (entryDest != null)
@@ -69,7 +69,7 @@ namespace Medfable.SceneManagement
             }
         }
 
-        //Gets the corresponding entry point destination that is referenced from this entry point
+        // Gets the corresponding entry point destination that is referenced from this entry point
         private EntryPoint GetOtherEntryPoint()
         {
             foreach (EntryPoint entryPoint in FindObjectsOfType<EntryPoint>())

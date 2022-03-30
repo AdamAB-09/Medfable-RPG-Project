@@ -26,21 +26,21 @@ namespace Medfable.SceneManagement
             image = GetComponent<Image>();
         }
 
-        //Animates the scene with a fading out sequence for a certain duration
+        // Animates the scene with a fading out sequence for a certain duration
         public IEnumerator FadeOutScene()
         {
             animator.SetTrigger("fadeOut");
             yield return new WaitForSeconds(fadeOutTime);
         }
 
-        //Animates the scene with a fading in sequence for a certain duration
+        // Animates the scene with a fading in sequence for a certain duration
         public IEnumerator FadeInScene()
         {
             animator.SetTrigger("fadeIn");
             yield return new WaitForSeconds(fadeInTime);
         }
 
-        //Instantly have a black fade effect for a duration
+        // Instantly have a black fade effect for a duration
         public IEnumerator FadeOutInstant()
         {
             Color tempColor = image.color;
@@ -49,7 +49,7 @@ namespace Medfable.SceneManagement
             yield return new WaitForSeconds(fadeInstantTime);
         }
 
-        //Re-enable the fade effects after fading out instantly previously
+        // Re-enable the fade effects after fading out instantly previously
         public void EnableFade()
         {
             animator.enabled = true;

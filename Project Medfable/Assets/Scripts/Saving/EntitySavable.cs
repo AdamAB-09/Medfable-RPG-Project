@@ -47,20 +47,20 @@ namespace Medfable.Saving
             return true;
         }
 
-        //Whenever the savable entity is destroyed, its GUID is removed from the dictionary
+        // Whenever the savable entity is destroyed, its GUID is removed from the dictionary
         private void OnDestroy()
         {
             dictGuids.Remove(guid);
         }
 #endif
 
-        //Gets the GUID of the savable entity
+        // Gets the GUID of the savable entity
         public string GetGuid()
         {
             return guid;
         }
 
-        //Allows the current object state to be saved
+        // Allows the current object state to be saved
         public Dictionary<string, object> CatchObjState()
         {
             Dictionary<string, object> gameState = new Dictionary<string, object>();
@@ -71,7 +71,7 @@ namespace Medfable.Saving
             return gameState;
         }
 
-        //Restores the prior state of the object
+        // Restores the prior state of the object
         public void GetObjState(object gameState)
         {
             Dictionary<string, object> dictState = (Dictionary<string, object>)gameState;

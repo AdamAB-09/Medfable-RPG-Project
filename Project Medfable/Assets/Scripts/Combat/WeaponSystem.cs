@@ -6,19 +6,22 @@ namespace Medfable.Combat
     [CreateAssetMenu(fileName = "WeaponSystem", menuName = "Weapons/Create new weapon", order = 0)]
     public class WeaponSystem : ScriptableObject
     {
-        [SerializeField]
-        private ProjectileSystem projectile = null;
+        [Header("Weapon stats")]
         [SerializeField]
         private float weaponDamage = 20f;
         [SerializeField]
         private float attackRange = 1.9f;
+        private const string weaponName = "Equipped Weapon";
+
+        [Header("Variables for instantiation")]
+        [SerializeField]
+        private ProjectileSystem projectile = null;
         [SerializeField]
         private AnimatorOverrideController weaponAnimate = null;
         [SerializeField]
         private GameObject weapon = null;
         [SerializeField]
         private bool isLeftHanded = false;
-        private const string weaponName = "Equipped Weapon";
 
         // Will spawn the weapon for the the entity to use and equip it in its correct hand if it has any set to it
         public void SpawnWeapon(Animator animator, Transform leftWeaponPos, Transform rightWeaponPos)
