@@ -9,13 +9,13 @@ namespace Medfable.Movement
     {
         private NavMeshAgent navMeshAgent;
 
-        //Awake is called when script instances are being loaded 
+        // The entity's NavMeshAgent is instantiated at awake to use later
         private void Awake()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
         }
 
-        //Update is called once per frame
+        // Update the entity's animation per frame
         private void Update()
         {
             EntityAnimation();
@@ -40,7 +40,7 @@ namespace Medfable.Movement
             }
         }
 
-        //Allows the entity to move towards a target destination
+        // Allows the entity to move towards a target destination
         public void MoveTowards(Vector3 targetDest)
         {
             MovementAction();
@@ -49,7 +49,7 @@ namespace Medfable.Movement
             navMeshAgent.destination = targetDest;
         }
 
-        //Changes the entity animation relative to the velocity the player moves at
+        // Changes the entity animation relative to the velocity the player moves at
         private void EntityAnimation()
         {
             // Changing global velocity to local for the animator to recongnise 
@@ -58,25 +58,25 @@ namespace Medfable.Movement
             GetComponent<Animator>().SetFloat("forwardSpeed", forwardSpeed);
         }
 
-        //Allows the entity to move off
+        // Allows the entity to move off
         private void MovementAction()
         {
             navMeshAgent.isStopped = false;
         }
 
-        //Stops the entity from moving
+        // Stops the entity from moving
         public void CancelAction()
         {
             navMeshAgent.isStopped = true;
         }
 
-        //Stores the player's position in order to be saved
+        // Stores the player's position in order to be saved
         public object CatchObjAttributes()
         {
             return new SerializePosition(transform.position);
         }
 
-        //Restores the player's prior position when loading in the latest file and cancels action
+        // Restores the player's prior position when loading in the latest file and cancels action
         public void RestoreObjAttributes(object obj)
         {
             SerializePosition pos = (SerializePosition)obj;

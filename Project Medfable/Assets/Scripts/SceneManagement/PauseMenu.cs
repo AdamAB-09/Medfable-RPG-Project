@@ -63,5 +63,11 @@ namespace Medfable.SceneManagement
         {
             Application.Quit();
         }
+
+        // Restarts the game from the first scene index
+        public void RestartGame()
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }

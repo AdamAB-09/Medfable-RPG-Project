@@ -1,6 +1,8 @@
 using Medfable.Core;
 using Medfable.Saving;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Medfable.Combat
 {
@@ -8,11 +10,16 @@ namespace Medfable.Combat
     {
         private bool isAlive = true;
         [SerializeField]
-        float health = 100f;
+        private float maxHealth = 100f;
         [SerializeField]
+        private float health;
+        [SerializeField]
+        private UnityEvent damageEvent;
+        [SerializeField]
+        private float timeToLoadDeath = 3f;
         private GameObject player;
 
-        // Start is called before the first frame update
+        // Locates the player at the start of the game and sets the max health of the entity only once
         private void Start()
         {
             player = GameObject.FindWithTag("Player");
@@ -24,16 +31,19 @@ namespace Medfable.Combat
             get { return isAlive; }
         }
 
-        /* Whenever an entity takes damage reduce health, until health is 0 or below then the
-         * entity is removed from the scene
+        /* Whenever an entity takes damage reduce health and trigger event, until health is 0 or 
+         * below then the entity is removed from the scene
         */
         public void TakeDamage(float damage)
         {
             health -= damage;
-
             if (health <= 0)
             {
                 Die();
+            }
+            else if (damageEvent != null)
+            {
+                damageEvent.Invoke();
             }
         }
 
@@ -44,15 +54,33 @@ namespace Medfable.Combat
             isAlive = false;
             GetComponent<Animator>().SetTrigger("die");
             GetComponent<InteractionScheduler>().CancelCurrentAction();
+            StartCoroutine(LoadAfterDeath());
         }
 
-        //Stores the health of the entity when saving
+        // Restore health up to their maximum health 
+        public void Heal(float restoreHealth)
+        {
+            health = Mathf.Min(health + restoreHealth, maxHealth);
+        }
+
+        // The game will load its last save for the player after a set duration when they die
+        private IEnumerator LoadAfterDeath()
+        {
+            if (this.gameObject == player)
+            {
+                SaveManager saveManager = FindObjectOfType<SaveManager>();
+                yield return new WaitForSeconds(timeToLoadDeath);
+                saveManager.LoadMode();
+            }
+        }
+
+        // Stores the health of the entity when saving
         public object CatchObjAttributes()
         {
             return health;
         }
 
-        //Loads the the most recent health of the entity
+        // Loads the the most recent health of the entity
         public void RestoreObjAttributes(object obj)
         {
             health = (float)obj;

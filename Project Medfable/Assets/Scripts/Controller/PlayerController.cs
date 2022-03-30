@@ -8,7 +8,7 @@ namespace Medfable.Controller
     {
         private HealthSystem health;
 
-        //Awake is called when script instances are being loaded
+        // Gets the health of the entity at the start of the game
         private void Awake()
         {
             health = GetComponent<HealthSystem>();
