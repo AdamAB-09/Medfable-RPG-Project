@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeUntilDestroy: 5
   impactEffect: {fileID: 100000, guid: bc98890f6028f444eaa7789bde5e2eeb, type: 3}
-  projectileSpeed: 12
+  projectileSpeed: 15
 --- !u!65 &6320261681698117279
 BoxCollider:
   m_ObjectHideFlags: 0

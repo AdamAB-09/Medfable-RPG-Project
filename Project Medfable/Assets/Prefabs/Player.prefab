@@ -51,7 +51,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -4479010620210539044, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
       propertyPath: health
-      value: 140
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: -4479010620210539044, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
+      propertyPath: maxHealth
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: -4425442023749289333, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
       propertyPath: guid
@@ -76,7 +80,7 @@ PrefabInstance:
     - target: {fileID: 7882320030434224866, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
       propertyPath: weapon
       value: 
-      objectReference: {fileID: 11400000, guid: 8cab552f79bc5524faf4467faea2cfcb, type: 2}
+      objectReference: {fileID: 11400000, guid: 8687ac4289d6a6c43a8cebb5f158c4df, type: 2}
     - target: {fileID: 7882320030434224866, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
       propertyPath: weaponPos
       value: 

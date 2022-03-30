@@ -1,23 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6456102058522085412
+--- !u!1001 &8864386264793671587
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 500288244002233534, guid: 5f1cb505f4a6d9840ba52f7992ea657f, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 78be5954566d2d848918e51832341fa3, type: 2}
-    - target: {fileID: 2194986649199562419, guid: 5f1cb505f4a6d9840ba52f7992ea657f, type: 3}
-      propertyPath: health
-      value: 80
+    - target: {fileID: 500288244015808998, guid: 5f1cb505f4a6d9840ba52f7992ea657f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2194986649199562419, guid: 5f1cb505f4a6d9840ba52f7992ea657f, type: 3}
-      propertyPath: maxHealth
-      value: 80
+    - target: {fileID: 500288244015811724, guid: 5f1cb505f4a6d9840ba52f7992ea657f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2325886762440916510, guid: 5f1cb505f4a6d9840ba52f7992ea657f, type: 3}
       propertyPath: m_RootOrder
@@ -65,15 +61,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2829930340471325798, guid: 5f1cb505f4a6d9840ba52f7992ea657f, type: 3}
       propertyPath: m_Name
-      value: Enemy Mage
+      value: Enemy Knight
       objectReference: {fileID: 0}
     - target: {fileID: 3657718283200606605, guid: 5f1cb505f4a6d9840ba52f7992ea657f, type: 3}
       propertyPath: weapon
       value: 
-      objectReference: {fileID: 11400000, guid: 8fbcde34278381842946f85f642a7ad2, type: 2}
-    - target: {fileID: 8927266725336098636, guid: 5f1cb505f4a6d9840ba52f7992ea657f, type: 3}
-      propertyPath: chaseRadius
-      value: 8
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 19b0774ff8c41c74ab72ec984146e43e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f1cb505f4a6d9840ba52f7992ea657f, type: 3}

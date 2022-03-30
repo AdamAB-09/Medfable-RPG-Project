@@ -4908,8 +4908,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25dd14f299073924cb0f1c419aea563b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeUntilDestroy: 6
   impactEffect: {fileID: 1134129239631916, guid: 7e48ba6b1b968764490bbc70b66e3fe1, type: 3}
-  projectileSpeed: 12
+  projectileSpeed: 15
 --- !u!65 &9137372654466154977
 BoxCollider:
   m_ObjectHideFlags: 0

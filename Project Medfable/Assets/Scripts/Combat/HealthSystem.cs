@@ -1,5 +1,6 @@
 using Medfable.Core;
 using Medfable.Saving;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,12 +10,16 @@ namespace Medfable.Combat
     {
         private bool isAlive = true;
         [SerializeField]
-        float health = 100f;
+        private float maxHealth = 100f;
+        [SerializeField]
+        private float health;
         [SerializeField]
         private UnityEvent damageEvent;
+        [SerializeField]
+        private float timeToLoadDeath = 3f;
         private GameObject player;
 
-        // Start is called before the first frame update
+        // Locates the player at the start of the game and sets the max health of the entity only once
         private void Start()
         {
             player = GameObject.FindWithTag("Player");
@@ -49,6 +54,24 @@ namespace Medfable.Combat
             isAlive = false;
             GetComponent<Animator>().SetTrigger("die");
             GetComponent<InteractionScheduler>().CancelCurrentAction();
+            StartCoroutine(LoadAfterDeath());
+        }
+
+        // Restore health up to their maximum health 
+        public void Heal(float restoreHealth)
+        {
+            health = Mathf.Min(health + restoreHealth, maxHealth);
+        }
+
+        // The game will load its last save for the player after a set duration when they die
+        private IEnumerator LoadAfterDeath()
+        {
+            if (this.gameObject == player)
+            {
+                SaveManager saveManager = FindObjectOfType<SaveManager>();
+                yield return new WaitForSeconds(timeToLoadDeath);
+                saveManager.LoadMode();
+            }
         }
 
         //Stores the health of the entity when saving

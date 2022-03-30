@@ -24,8 +24,8 @@ namespace Medfable.Combat
         private HealthSystem target;
 
 
-        //Equip weapon for an entity if they have any set to them
-        private void Start()
+        // Equip weapon for an entity if they have any set to them before game is loaded in
+        private void Awake()
         {
             if (currentWeapon != null) { return; }
             EquipWeapon(weapon);
