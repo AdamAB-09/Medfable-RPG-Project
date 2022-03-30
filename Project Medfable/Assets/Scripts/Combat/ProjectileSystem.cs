@@ -5,6 +5,8 @@ namespace Medfable.Combat
     public class ProjectileSystem : MonoBehaviour
     {
         [SerializeField]
+        private GameObject impactEffect = null;
+        [SerializeField]
         private float projectileSpeed = 2f;
         private float projectileDamage = 0f;
         private HealthSystem combatTarget = null;
@@ -13,8 +15,13 @@ namespace Medfable.Combat
         private void Start()
         {
             if (combatTarget == null) { return; }
-            Vector3 aimLocation = combatTarget.GetComponent<Collider>().bounds.center;
-            transform.LookAt(aimLocation);
+            transform.LookAt(GetAimLocation());
+        }
+
+        // Gets the central point of an entity's body to target
+        private Vector3 GetAimLocation()
+        {
+            return combatTarget.GetComponent<Collider>().bounds.center;
         }
 
         // Projectile moves forward at a given speed per frame
@@ -29,6 +36,10 @@ namespace Medfable.Combat
             if (!combatTarget.IsAlive) { return; }
             if (other.GetComponent<HealthSystem>() == combatTarget)
             {
+                if (impactEffect != null)
+                {
+                    Instantiate(impactEffect, GetAimLocation(), transform.rotation);
+                }
                 combatTarget.TakeDamage(projectileDamage);
                 Destroy(gameObject);
             }

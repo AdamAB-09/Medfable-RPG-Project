@@ -56,6 +56,7 @@ namespace Medfable.Combat
             {
                 transform.LookAt(target.transform);
                 GetComponent<Animator>().SetTrigger("attack");
+                GetComponent<Animator>().ResetTrigger("stopAttack");
                 StartCoroutine(Cooldown());
             }
         }

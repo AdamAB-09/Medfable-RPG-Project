@@ -1,0 +1,2 @@
+This folder contains all the asset packs that I've installed on the Unty Store. All assets within this folder don't belong to me but rather members of the Unity community who've uploaded their work on the store for others to use.
+They're all free to use as long as they're not being used commerically, which this project is non-commerical. Some assets may contain license.txt or README files that outlines all the details and the creator.

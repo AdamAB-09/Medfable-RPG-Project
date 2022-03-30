@@ -1427,6 +1427,7 @@ Transform:
   m_Children:
   - {fileID: 175053146}
   - {fileID: 1744929105}
+  - {fileID: 2111207400}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3934,6 +3935,68 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 421442, guid: fb4e0b01a8eccf24c9e5ca4c30a9b2be, type: 3}
   m_PrefabInstance: {fileID: 1467343104}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2111207399
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 791519362}
+    m_Modifications:
+    - target: {fileID: 1861658188590659274, guid: 16dd0dccdadad75469f6e5b829b46239, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861658188590659274, guid: 16dd0dccdadad75469f6e5b829b46239, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.505
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861658188590659274, guid: 16dd0dccdadad75469f6e5b829b46239, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.964
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861658188590659274, guid: 16dd0dccdadad75469f6e5b829b46239, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 52.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861658188590659274, guid: 16dd0dccdadad75469f6e5b829b46239, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861658188590659274, guid: 16dd0dccdadad75469f6e5b829b46239, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861658188590659274, guid: 16dd0dccdadad75469f6e5b829b46239, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861658188590659274, guid: 16dd0dccdadad75469f6e5b829b46239, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861658188590659274, guid: 16dd0dccdadad75469f6e5b829b46239, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861658188590659274, guid: 16dd0dccdadad75469f6e5b829b46239, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861658188590659274, guid: 16dd0dccdadad75469f6e5b829b46239, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109177674222103608, guid: 16dd0dccdadad75469f6e5b829b46239, type: 3}
+      propertyPath: m_Name
+      value: Fire Staff Pickup
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 16dd0dccdadad75469f6e5b829b46239, type: 3}
+--- !u!4 &2111207400 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1861658188590659274, guid: 16dd0dccdadad75469f6e5b829b46239, type: 3}
+  m_PrefabInstance: {fileID: 2111207399}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2143100606 stripped
 Transform:
