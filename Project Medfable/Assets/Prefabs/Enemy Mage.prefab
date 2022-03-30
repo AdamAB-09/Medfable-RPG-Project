@@ -73,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 8fbcde34278381842946f85f642a7ad2, type: 2}
     - target: {fileID: 8927266725336098636, guid: 5f1cb505f4a6d9840ba52f7992ea657f, type: 3}
       propertyPath: chaseRadius
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f1cb505f4a6d9840ba52f7992ea657f, type: 3}

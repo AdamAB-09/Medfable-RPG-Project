@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 4537685902536291116, guid: 5fb64c6fe16514245a3da7902004d07e, type: 3}
   weaponDamage: 25
-  attackRange: 8
+  attackRange: 10
   weaponAnimate: {fileID: 22100000, guid: bd80d62651819cf4d87de7a4abc80ce3, type: 2}
   weapon: {fileID: 7328568785924294019, guid: 242221acc9290c84f915c22e0c0e8d19, type: 3}
   isLeftHanded: 0

@@ -72,6 +72,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 8cab552f79bc5524faf4467faea2cfcb, type: 2}
     - target: {fileID: 3657718283200606605, guid: 5f1cb505f4a6d9840ba52f7992ea657f, type: 3}
+      propertyPath: attackCooldown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3657718283200606605, guid: 5f1cb505f4a6d9840ba52f7992ea657f, type: 3}
       propertyPath: equippedWeaponName
       value: Bow
       objectReference: {fileID: 0}
