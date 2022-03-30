@@ -1,11 +1,12 @@
 using Medfable.Core;
 using Medfable.Movement;
+using Medfable.Saving;
 using System.Collections;
 using UnityEngine;
 
 namespace Medfable.Combat
 {
-    public class EntityCombat : MonoBehaviour, IInteraction
+    public class EntityCombat : MonoBehaviour, IInteraction, ISavable
     {
         [Header("Attacking attributes")]
         [SerializeField]
@@ -13,7 +14,6 @@ namespace Medfable.Combat
         private bool isCooldown = false;
 
         [Header("Variables for instantiating")]
-        private HealthSystem target;
         [SerializeField]
         private Transform rightWeaponPos = null;
         [SerializeField]
@@ -21,11 +21,13 @@ namespace Medfable.Combat
         [SerializeField]
         private WeaponSystem weapon = null;
         private WeaponSystem currentWeapon = null;
+        private HealthSystem target;
 
 
         //Equip weapon for an entity if they have any set to them
         private void Start()
         {
+            if (currentWeapon != null) { return; }
             EquipWeapon(weapon);
         }
 
@@ -107,6 +109,20 @@ namespace Medfable.Combat
             isCooldown = true;
             yield return new WaitForSeconds(attackCooldown);
             isCooldown = false;
+        }
+
+        // Save the currently equipped weapon's name
+        public object CatchObjAttributes()
+        {
+            return currentWeapon.name;
+        }
+
+        // Load the previous weapon the entity was holding in their last save
+        public void RestoreObjAttributes(object obj)
+        {
+            string storedWeaponName = (string)obj;
+            WeaponSystem loadWeapon = Resources.Load<WeaponSystem>(storedWeaponName);
+            EquipWeapon(loadWeapon);
         }
     }
 }

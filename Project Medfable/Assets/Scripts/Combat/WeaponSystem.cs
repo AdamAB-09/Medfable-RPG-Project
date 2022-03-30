@@ -24,13 +24,19 @@ namespace Medfable.Combat
         public void SpawnWeapon(Animator animator, Transform leftWeaponPos, Transform rightWeaponPos)
         {
             DestroyEquippedWeapon(leftWeaponPos, rightWeaponPos);
-
             if (weapon != null)
             {
                 Transform weaponTransform = GetWeaponTransform(leftWeaponPos, rightWeaponPos);
-                GameObject newWeapon  = Instantiate(weapon, weaponTransform);
+                GameObject newWeapon = Instantiate(weapon, weaponTransform);
                 newWeapon.name = weaponName;
             }
+
+            SetAnimatorController(animator);
+        }
+
+        // Readjusts the runtime animator for the weapon the entity is using to perform correct attack animation
+        private void SetAnimatorController(Animator animator)
+        {
             if (weaponAnimate != null)
             {
                 animator.runtimeAnimatorController = weaponAnimate;
