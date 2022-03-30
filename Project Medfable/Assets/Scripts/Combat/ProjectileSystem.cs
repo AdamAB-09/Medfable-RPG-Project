@@ -5,6 +5,8 @@ namespace Medfable.Combat
     public class ProjectileSystem : MonoBehaviour
     {
         [SerializeField]
+        private float timeUntilDestroy = 5f;
+        [SerializeField]
         private GameObject impactEffect = null;
         [SerializeField]
         private float projectileSpeed = 2f;
@@ -28,6 +30,17 @@ namespace Medfable.Combat
         public void Update()
         {
             transform.Translate(Vector3.forward * Time.deltaTime * projectileSpeed);
+            DestroyImpactEffect();
+        }
+
+        // Destroys any impact effect after collision if there is any
+        private void DestroyImpactEffect()
+        {
+            if (GetComponent<ParticleSystem>() == null) { return; }
+            if (GetComponent<ParticleSystem>().IsAlive())
+            {
+                Destroy(impactEffect);
+            }
         }
 
         // Whenever the arrows collides with an entity, it will output damage and get removed
@@ -45,11 +58,12 @@ namespace Medfable.Combat
             }
         }
 
-        // Sets a combat target for the entity to attack
+        // Sets a combat target for the entity to attack and destroys projectile after set duration
         public void SetCombatTarget(HealthSystem target, float damage)
         {
             projectileDamage = damage;
             combatTarget = target;
+            Destroy(gameObject, timeUntilDestroy);
         }
     }
 }
