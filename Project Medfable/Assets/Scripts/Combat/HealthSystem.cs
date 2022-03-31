@@ -8,7 +8,6 @@ namespace Medfable.Combat
 {
     public class HealthSystem : MonoBehaviour, ISavable
     {
-        private bool isAlive = true;
         [SerializeField]
         private float maxHealth = 100f;
         [SerializeField]
@@ -18,8 +17,9 @@ namespace Medfable.Combat
         [SerializeField]
         private float timeToLoadDeath = 3f;
         private GameObject player;
+        private bool isAlive = true;
 
-        // Locates the player at the start of the game and sets the max health of the entity only once
+        // Locates the player at the start of the game
         private void Start()
         {
             player = GameObject.FindWithTag("Player");
@@ -31,12 +31,24 @@ namespace Medfable.Combat
             get { return isAlive; }
         }
 
+        // Gets the maximum health of the entity
+        public float GetMaxHealth()
+        {
+            return maxHealth;
+        }
+
+        // Gets the current health of the entity
+        public float GetHealth()
+        {
+            return health;
+        }
+
         /* Whenever an entity takes damage reduce health and trigger event, until health is 0 or 
          * below then the entity is removed from the scene
         */
         public void TakeDamage(float damage)
         {
-            health -= damage;
+            health = Mathf.Max(health - damage, 0);
             if (health <= 0)
             {
                 Die();

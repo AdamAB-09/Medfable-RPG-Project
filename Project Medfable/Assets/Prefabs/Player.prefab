@@ -61,6 +61,14 @@ PrefabInstance:
       propertyPath: guid
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2038309697752662814, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4268482886394071523, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
+      propertyPath: healthSystem
+      value: 
+      objectReference: {fileID: 5680032541113461208}
     - target: {fileID: 5766443166899519508, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
@@ -161,6 +169,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9216131237162722673, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
   m_PrefabInstance: {fileID: 1082231783977401348}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5680032541113461208 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -4479010620210539044, guid: c948efbf593d6e3489e66c0d555f4426, type: 3}
+  m_PrefabInstance: {fileID: 1082231783977401348}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8637976225565713165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a871117c82f382d4ba117326709970bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6121792301782474088
 PrefabInstance:
   m_ObjectHideFlags: 0
