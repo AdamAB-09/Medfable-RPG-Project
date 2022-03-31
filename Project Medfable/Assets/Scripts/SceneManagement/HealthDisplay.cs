@@ -12,11 +12,13 @@ namespace Medfable
         [SerializeField]
         private HealthSystem healthSystem;
         private GameObject player;
+        private Camera mainCam;
 
-        // Locates the player at the start of the game
+        // Locates the player and the main camera at the start of the game
         private void Start()
         {
             player = GameObject.FindWithTag("Player");
+            mainCam = Camera.main;
         }
 
         // Updates the display to the current entity's health and faces it towards the camera
@@ -35,7 +37,7 @@ namespace Medfable
 
             canvas.enabled = true;
             remainingHealthDisplay.localScale = new Vector3(currentHealth / maxHealth, 1f, 1f);
-            transform.forward = Camera.main.transform.forward;
+            transform.forward = mainCam.transform.forward;
         }
     }
 }

@@ -1,0 +1,85 @@
+Bug Report Template
+============================================================================================================================================================================
+
+Bug name
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1. NavMesh issue on the bridge in the town scene
+2. Player not attacking after attacking once and moving away
+3. Attack range for both the player and enemy
+4. Not facing the combat target when in battle
+5. Enemy AI not following their patrol paths
+6. Fading system not fading in after passing through an entry point
+7. Player being able to move around/attack in cutscene
+8. GUIDs are not unique when using prefabs
+9. Saving progress in another scene and reloading the game from a different scene
+10. Weapons producing the wrong animation when picking up the weapon
+
+
+Description
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1. The NavMesh isn't properly responding whenever the player walks onto the bridge
+2. Whenever the player attacks an enemy and moves away then attacks again, they will not peform their attacking animation correctly
+3. The melee attack has a certain range it will be executed at however, the player or enemy will go right up to one another at close range attacking
+4. The entity will face the direction they walked in when attacking the other entity and perform their animation in that direction
+5. When assigning an enemy with a certain patrol path they will remain still rather than following it
+6. The fading system works by fading out and back in when passing through an entry point however, this isn't happening
+7. Player isn't frozen in place when passing through the cutscene object that triggers the cinematic scene
+8. The GUIDs for savable entites are duplicates thus data isn't being saved propery
+9. Whenever the player saves in scene x then reloads the game from scene y, they will be placed outside the map
+10. Weapons have their own corresponding animation however, the melee animation is being shown 
+
+
+Steps to reproduce
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1. Player or enemies attempts to walk onto the bridge
+2. Attack the enemy, move away, attack again
+3. Attack an enemy or allow enemy to attack player
+4. Attack an enemy or allow enemy to attack player in a direction not facing the other target
+5. In the Unity Editor, assign the enemy with a patrol path
+6. Pass through an entry point
+7. Pass through the cinematic gameobject box collider
+8. Drag a prefab into the scene and then save and load
+9. Save the game in scene x, reload game from scene y
+10. Pick up a weapon and attack an enemy
+
+
+Expected result
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1. They should be able to walk across succesfully with no jittering or stopping
+2. The player should attack as they were normally
+3. The melee attack animation should be performed a small distance away from the other combat entity 
+4. Both entities should be facing one another when attacking each other
+5. They should follow the patrol path as intended 
+6. Passing through an entry point should fade out briefly and then fade back in after the new scene loaded
+7. User shouldn't have control of their player when cutscene is triggered
+8. The entities should have their data saved and loaded correctly such as their position, health etc 
+9. The player should have their last saved position when reloading the game no matter the scene they do it from
+10. Player should be utilising the correct animation attached to the weapon they pick up
+
+
+Actual result
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1. They sometimes don't move across or their animations are jittering
+2. They would perform half their animation for the first attack and not hit, they will only hit after
+3. The entity will be up close to the other entity thus making the melee attack animation go through their body which is unapealling
+4. The entities will be facing away from each other depending on where they move to when attacking
+5. They remain still in their spawning point and don't follow the patrol path
+6. Even when the new scene is loaded in, the screen remains black due to the fade out effect and not fading back in
+7. User still has control of player when cinematic scene occurs
+8. Two seperate entites with the same GUID will share the same save data
+9. It places the player outside the map or in an area they're not supposed to be in
+10. Melee animation is being performed when attacking with the weapon pick up
+
+
+Fixed/Not Fixed
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1. Fixed
+2. Fixed
+3. Fixed
+4. Fixed
+5. Fixed
+6. Fixed
+7. Fixed
+8. Fixed
+9. Fixed
+10. Fixed
